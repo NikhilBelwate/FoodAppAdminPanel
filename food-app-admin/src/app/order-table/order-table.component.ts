@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataApiService } from '../data-api.service';
 import { Data, Order } from '../data-interfaces';
+import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-order-table',
@@ -9,23 +12,49 @@ import { Data, Order } from '../data-interfaces';
 })
 export class OrderTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['OrderID', 'UserID', 'HotelID', 'Total_price', 'Status'];
+  displayedColumns: string[] = ['OrderID', 'UserID', 'HotelID','mobileNo', 'DeliveryDetails','Total_price', 'Status'];
   public ordersData:Data;
-  public orderList:Order[];
+  public orderList;
+
+  @ViewChild(MatSort) sort:MatSort;
+  
   errormsg:string;
-  constructor(private _dataApiService:DataApiService) { }
+  constructor(private _dataApiService:DataApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this._dataApiService.getOrdersListDataJsonp().subscribe(
+    this._dataApiService.getOrdersListData().subscribe(
       data => {
           this.ordersData=data;
-          this.orderList=this.ordersData.orders;
+          this.orderList=new MatTableDataSource(this.ordersData.orders);
+          //For sorting of table data
+          this.orderList.sort= this.sort;
       },
       error => {
         this.errormsg=error.message;
         
       }
     );
+
+   
+  }
+  showDetails(row){
+    alert(row);
+    this.router.navigate(["/details",row.OrderID]);
   }
 
+  applyFilter(searchdata:string){
+
+
+    this.orderList.filterPredicate = function(data, filter: string): boolean {
+      if(JSON.stringify(data).toLowerCase().includes(filter)||data.DeliveryDetails.mobileNo.toLowerCase().includes(filter) || data.DeliveryDetails.Address.toLowerCase().includes(filter) ){
+        return true;
+      }else{
+
+        return false;
+      }
+    }
+    this.orderList.filter=searchdata.trim().toLowerCase();
+  }
+
+  
 }

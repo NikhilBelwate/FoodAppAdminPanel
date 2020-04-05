@@ -41,9 +41,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [
@@ -52,9 +54,11 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatAutocompleteModule,
         MatBadgeModule,
@@ -89,7 +93,8 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        BrowserAnimationsModule
     ],
     exports: [
         MatAutocompleteModule,

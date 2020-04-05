@@ -7,6 +7,18 @@
         lon: number;
         mobileNo: string;
         pinCode: number;
+
+    }
+
+    export interface Record{
+        OrderID:number;
+        Old_status:string;
+        New_status:string;
+        Time: string;
+    }
+    
+    export interface Records{
+        records: Record[];
     }
 
     export interface FoodList {

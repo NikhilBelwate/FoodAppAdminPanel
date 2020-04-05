@@ -1,0 +1,36 @@
+<p>show-order-details works!</p>
+<hr/>
+{{ orderInfo | json}}
+<hr/>
+{{ statusRecord[0] | json}}
+
+<hr/>
+{{ statusRecord[1] | json}}
+<hr/>
+{{ statusRecord[2] | json}}
+<hr/>
+
+  <!--
+    <mat-form-field>
+        <mat-label>New status</mat-label>
+    <mat-select [(value)]='newStatus'>
+        <mat-option value="Accept">Accept</mat-option>
+        <mat-option value="food_preparing">Food Preparing</mat-option>
+        <mat-option value="out_for_delivery">Out For Delivery</mat-option>
+        <mat-option value="food_delivered">Food Delivered</mat-option>
+    </mat-select>
+    </mat-form-field>-->
+    
+
+    <h3>Set new status for order no {{orderInfo.OrderID}}</h3>
+
+  <mat-label>NEW STATUS</mat-label>
+  <select matNativeControl [(ngModel)]='newStatus'>
+    <option value="Accept" selected>Accept</option>
+    <option value="food_preparing">Food Preparing</option>
+    <option value="out_for_delivery">Out For Delivery</option>
+    <option value="food_delivered">Food Delivered</option>
+  </select>
+    <mat-form-field>
+    <button (click)="changeStatus()">Save New Status {{newStatus}}</button>
+    </mat-form-field>

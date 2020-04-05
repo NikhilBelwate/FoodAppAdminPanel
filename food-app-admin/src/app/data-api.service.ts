@@ -4,7 +4,7 @@ import { Observable, from } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Data } from './data-interfaces';
+import { Data, Order, Records } from './data-interfaces';
 //import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -22,13 +22,54 @@ export class DataApiService {
     })
   };
 
-  //getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
- 
-  getOrdersListUrl:string="http://www.mocky.io/v2/5e80c0ee3000004a006f9575"
+  getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
+  //getOrdersListUrl:string="http://www.mocky.io/v2/5e80c0ee3000004a006f9575"
+
+  getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
+  //getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
+  
+  getStatusRecordsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
+  //getStatusRecordsUrl:string="http://www.mocky.io/v2/5e871a4231000011d88185de?orderID=";
+
+
+  submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
+  //submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
+
   constructor(private _http:HttpClient) {
     this.httpOptions.headers =this.httpOptions.headers.set('Authorization', 'my-new-auth-token');
    }
 
+//HTTP POST
+public setNewStatusOnServer(valeset:HttpHeaders): Observable<string>{
+
+  return this._http.post<string>(this.submitStatusChangeUrl,valeset.toString(),this.httpOptions).pipe(
+    catchError(this.errorHandler)
+  );//catch(this.errorHandler);
+
+
+}
+
+
+
+   //HTTP GET
+  public getStatusHistoryRecords(orderID:number): Observable<Records>{
+
+    return this._http.get<Records>(this.getStatusRecordsUrl+orderID).pipe(
+      catchError(this.errorHandler)
+    );//catch(this.errorHandler);
+
+
+  }
+
+   //HTTP GET
+  public getOrderDetails(orderID:number): Observable<Order>{
+
+    return this._http.get<Order>(this.getOrderDetailsUrl+orderID).pipe(
+      catchError(this.errorHandler)
+    );//catch(this.errorHandler);
+
+
+  }
    //HTTP GET
   public getOrdersListData(): Observable<Data>{
 
