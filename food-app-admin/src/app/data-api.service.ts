@@ -48,7 +48,7 @@ export class DataApiService {
 //HTTP POST
 public setNewStatusOnServer(valeset:HttpParams): Observable<string>{
 
-  return this._http.post<string>(this.submitStatusChangeUrl,valeset.toString(),this.httpOptions).pipe(
+  return this._http.post<string>(this.submitStatusChangeUrl,valeset,this.httpOptions).pipe(
     catchError(this.errorHandler)
   );//catch(this.errorHandler);
 
