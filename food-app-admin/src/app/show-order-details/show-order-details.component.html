@@ -21,6 +21,78 @@
     </mat-select>
     </mat-form-field>-->
     
+    <body>
+
+      <div ng-app="myApp" ng-controller="customersCtrl"> 
+      
+      <table>
+        <tr><th>OrderID</th><th>UserID</th><th>HotelID</th></tr>
+        <tr ng-repeat="User details">
+        <td>{{orderInfo.OrderID}}</td>
+        <td>{{orderInfo.UserID}}</td>
+        <td>{{orderInfo.HotelID}}</td>
+
+        <!--<td>{{orderInfo.sgst}}</td>-->
+        <td>{{orderInfo.Total_price}}</td>
+        <td>{{orderInfo.Status}}</td>
+        <td>{{orderInfo.Time}}</td> 
+        </tr>
+      </table>
+      </div>
+
+      <div ng-app="myApp" ng-controller="customersCtrl"> 
+      <table>
+        <tr><th>OrderID</th><th>Address</th><th>Email</th><th>Name</th><th>Lat</th><th>lon</th><th>MobileNo</th><th>Pin</th></tr>
+        <tr ng-repeat="Delivery Details">
+        <td>{{orderInfo.OrderID}}</td>
+        <td>{{orderInfo.DeliveryDetails.Address}}</td>
+        <td>{{orderInfo.DeliveryDetails.email}}</td>
+        <td>{{orderInfo.DeliveryDetails.fullName}}</td>
+        <td>{{orderInfo.DeliveryDetails.lat}}</td>
+        <td>{{orderInfo.DeliveryDetails.lon}}</td>
+        <td>{{orderInfo.DeliveryDetails.mobileNo}}</td>
+        <td>{{orderInfo.DeliveryDetails.pinCode}}</td>
+
+         <!--<td>{{orderInfo.UserID}}</td>
+        <td>{{orderInfo.Status}}</td>
+      <td>{{orderInfo.Time}}</td>-->
+        </tr>
+      </table>
+      
+      </div>
+
+          <div ng-app="myApp" ng-controller="customersCtrl"> 
+        <table>
+          <tr><th>GrandTotal</th><th>SGST</th><th>TotalPrice</th></tr>
+          <tr ng-repeat="Order Details">
+
+          <td>{{orderInfo.OrderDetails.OrderId}}</td>
+        <!--<td>{{orderInfo.sgst}}</td>
+          <td>{{orderInfo.totalPrice}}</td>
+          <td>{{orderInfo.Total_price}}</td>
+          <td>{{orderInfo.Status}}</td>
+          <td>{{orderInfo.Time}}</td>
+          </tr>
+        </table>
+
+        </div>-->
+
+        <table>
+          <tr><th>CGST</th><th>SGST</th><th>TotalPrice</th><th>DeliveryDeatils</th><th>GrandTotal</th></tr>
+          <tr>
+          
+          <td>{{orderInfo.OrderDetails.cgst}}</td>
+          <td>{{orderInfo.OrderDetails.sgst}}</td>
+          <td>{{orderInfo.OrderDetails.totalPrice}}</td>
+          <td>{{orderInfo.OrderDetails.delivaryCharge}}</td>
+          <td>{{orderInfo.OrderDetails.grandTotal}}</td>
+
+
+      
+          </tr>
+        </table>
+
+
 
     <h3>Set new status for order no {{orderInfo.OrderID}}</h3>
 
