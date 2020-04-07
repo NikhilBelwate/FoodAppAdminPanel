@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -22,17 +22,23 @@ export class DataApiService {
     })
   };
 
-  getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
+  //getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
+  getOrdersListUrl:string="/FoodApp/foodAppAPI/getAllOrders.php";
   //getOrdersListUrl:string="http://www.mocky.io/v2/5e80c0ee3000004a006f9575"
 
-  getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
+  //getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
+  getOrderDetailsUrl:string="/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
   //getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
   
-  getStatusRecordsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
+  //getStatusRecordsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
+  getStatusRecordsUrl:string="/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
+  
   //getStatusRecordsUrl:string="http://www.mocky.io/v2/5e871a4231000011d88185de?orderID=";
 
 
-  submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
+  //submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
+  submitStatusChangeUrl:string="/FoodApp/foodAppAPI/changeStatus.php"
+  
   //submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
 
   constructor(private _http:HttpClient) {
@@ -40,7 +46,7 @@ export class DataApiService {
    }
 
 //HTTP POST
-public setNewStatusOnServer(valeset:HttpHeaders): Observable<string>{
+public setNewStatusOnServer(valeset:HttpParams): Observable<string>{
 
   return this._http.post<string>(this.submitStatusChangeUrl,valeset.toString(),this.httpOptions).pipe(
     catchError(this.errorHandler)

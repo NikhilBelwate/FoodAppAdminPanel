@@ -1,0 +1,9 @@
+{
+    "/FoodApp/*": {
+        "target": "http://foodapp.dx.am",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+       
+    }
+}
