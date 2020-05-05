@@ -1,3 +1,4 @@
+import { Category } from 'src/model/Category';
 
     export interface DeliveryDetails {
         Address: string;
@@ -53,4 +54,8 @@
 
     export interface Data {
         orders: Order[];
+    }
+
+    export interface Grocerycategory {
+        categoryList: Category[];
     }

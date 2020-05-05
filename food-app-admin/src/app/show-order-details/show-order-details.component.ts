@@ -19,7 +19,7 @@ export class ShowOrderDetailsComponent implements OnInit {
   statusRecord:Record[];
   options: FormGroup;
   colorControl = new FormControl('primary');
-
+  foods = ["Ronak","Nikhil","Rahul"];
   constructor(private route:ActivatedRoute, private _dataApiService:DataApiService) { 
 
     

@@ -1,0 +1,132 @@
+
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>Grocery
+        <p><button mat-button (click) = "showDetails('Grocery')">Add/Update Grocery Category </button></p>
+        <p><button mat-button (click) = "showDetails('Food')">Add/Update Grocery Products</button></p>
+    </mat-drawer>
+    
+    <mat-drawer-content>
+      <ng-container *ngIf="editFlag ;else addView">
+      
+        
+      <div><app-edit-grocery-subcategory [subCategory] = "subCategory" (messageEvent)="receiveMessage($event)"></app-edit-grocery-subcategory></div>
+    
+  </ng-container>
+    <ng-template #addView>
+      <ng-container *ngIf="addFlag ;else loggedOut">
+      <div><app-add-grocery-subcategory-inventory [subCategory] = "subCategory" (messageEventAdd)="receiveMessageAdd($event)"></app-add-grocery-subcategory-inventory></div>
+    </ng-container>
+    </ng-template>
+      <!--<mat-toolbar color="primary">
+        <span>Angular 8 MatTable CRUD Example</span>
+        <span class="spacer"></span>
+        Reload data:
+        <button mat-icon-button (click)="refresh()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </mat-toolbar>-->
+      <ng-template #loggedOut>
+      <div class="container mat-elevation-z8">
+      
+        <div class="form">
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput #filter placeholder="Filter issues" (keyup)="sendit($event.target.value)">
+          </mat-form-field>
+        </div>
+      
+        <mat-table #table [dataSource]="subCategoryList" matSort class="mat-cell">
+           <!--- ng update @angular/cli @angular/core
+         Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="SubCategoryId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory ID</mat-header-cell>
+            <mat-cell *matCellDef="let row" >{{row.subCategoryId}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="SubCategoryName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Name</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.subCategoryName}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="categoryName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.categoryName}}
+          </mat-cell>
+        </ng-container>
+
+          <ng-container matColumnDef="SubcategoryPrice">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Price</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.subCategoryPrice}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="SubCategoryURL">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory URL</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.subCategoryUrl}}</mat-cell>
+          </ng-container>
+
+          
+          <ng-container matColumnDef="SubCategoryDesc">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Description</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.subCategoryDesc}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="LocationId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Location ID</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.locationId}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button color="primary" (click)="addNew()">
+                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+              </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="accent" (click)="startEdit(row)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="deleteItem(row)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+              </mat-cell>
+            </ng-container>
+      
+          <!-- actions -->
+           <!--<ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button color="primary" (click)="addNew()">
+                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+              </button>
+            </mat-header-cell>
+      
+            <mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+      
+              <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>-->
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      
+      <!--
+        <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+          No results
+        </div>
+      
+        <mat-paginator #paginator
+                       [length]="dataSource.filteredData.length"
+                       [pageIndex]="0"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>-->
+      </div>
+    </ng-template>
+    </mat-drawer-content>
+  </mat-drawer-container>

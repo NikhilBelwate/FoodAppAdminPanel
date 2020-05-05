@@ -1,0 +1,79 @@
+<div class="container">
+    <h3 mat-dialog-title>Sub Category id: {{subCategory.subCategoryId}}</h3>
+  
+    <form class="mat-dialog-content" [formGroup] = "editSubcategoryProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory ID" [(ngModel)]="subCategory.subCategoryId" name="id" formControlName="subCategoryId" >
+         
+        </mat-form-field>
+      </div>
+  
+      <!--Textarea for demo purposes-->
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory Name" [(ngModel)]="subCategory.subCategoryName" name="title" formControlName="subCategoryName" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent" class="full-width">
+            <mat-select placeholder="Category" formControlName="categoryName" >
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let category of categoryService.categoryList" [value]="category.categoryName">
+                    {{category.categoryName}}
+                  </mat-option>
+              </mat-select>
+         
+        </mat-form-field>
+      </div>
+      <!--Contains mat-hint for characters count and has maxLengt set-->
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory Price" [(ngModel)]="subCategory.subCategoryPrice" name="title" formControlName="subCategoryPrice" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory URL" [(ngModel)]="subCategory.subCategoryUrl" name="title" formControlName="subCategoryUrl" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory Decription" [(ngModel)]="subCategory.subCategoryDesc" name="title" formControlName="subCategoryDesc" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="Location Id" [(ngModel)]="subCategory.locationId" name="title" formControlName="locationId" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory Tax rate" [(ngModel)]="subCategory.subCategoryTax" name="title" formControlName="subCategoryTax" >
+         
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="SubCategory Unit" [(ngModel)]="subCategory.unit" name="title" formControlName="subCategoryUnit" >
+         
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+      <button type="submit" [disabled]="!formControl.valid" >Update</button>
+    </div>
+    
+  
+      <!--<div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>-->
+    </form>
+  </div>

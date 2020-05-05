@@ -22,6 +22,7 @@ export class OrderTableComponent implements OnInit {
   constructor(private _dataApiService:DataApiService, private router: Router) { }
 
   ngOnInit(): void {
+    alert("Inside Order Table");
     this._dataApiService.getOrdersListData().subscribe(
       data => {
           this.ordersData=data;
