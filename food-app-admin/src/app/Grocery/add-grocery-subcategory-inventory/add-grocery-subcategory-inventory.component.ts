@@ -1,20 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SubCategory } from 'src/model/SubCategory';
+import { Grocerycategory } from '../../data-interfaces';
 import { FormBuilder } from '@angular/forms';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
-import { Grocerycategory } from '../data-interfaces';
 
 @Component({
-  selector: 'app-edit-grocery-subcategory',
-  templateUrl: './edit-grocery-subcategory.component.html',
-  styleUrls: ['./edit-grocery-subcategory.component.css']
+  selector: 'app-add-grocery-subcategory-inventory',
+  templateUrl: './add-grocery-subcategory-inventory.component.html',
+  styleUrls: ['./add-grocery-subcategory-inventory.component.css']
 })
-export class EditGrocerySubcategoryComponent implements OnInit {
+export class AddGrocerySubcategoryInventoryComponent implements OnInit {
 
   @Input() public subCategory:SubCategory;
   public categoryService:Grocerycategory;
   public editFlag:boolean=false;
+  @Output() messageEventAdd = new EventEmitter<Boolean>();
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -34,7 +35,6 @@ export class EditGrocerySubcategoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
-    // set the value of dropdown
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.categoryName);
   }
 
@@ -46,8 +46,7 @@ export class EditGrocerySubcategoryComponent implements OnInit {
       }
     )
   }
-  // Message Event is used to change flag status from child component to parent component
-  @Output() messageEvent = new EventEmitter<Boolean>();
+
   onSubmit(){
     // console.warn(this.userProfileForm.value);
     const categoryName = this.editSubcategoryProfileForm.get('categoryName').value;
@@ -58,7 +57,6 @@ export class EditGrocerySubcategoryComponent implements OnInit {
          console.log(data);
          alert("Sub Category Records Updated Succesfully");
          this.editFlag = false;
-         this.messageEvent.emit(this.editFlag);
          this.router.navigate(["/subCategory"]);
        },
        error => {
@@ -66,4 +64,5 @@ export class EditGrocerySubcategoryComponent implements OnInit {
        
      )
    }
+
 }

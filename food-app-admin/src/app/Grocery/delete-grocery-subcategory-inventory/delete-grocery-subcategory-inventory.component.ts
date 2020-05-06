@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { SubCategory } from 'src/model/SubCategory';
 
 @Component({

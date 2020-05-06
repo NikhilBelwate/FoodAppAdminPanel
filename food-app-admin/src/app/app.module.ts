@@ -45,14 +45,15 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GroceryInventoryComponent } from './grocery-inventory/grocery-inventory.component';
-import { EditgroceryinventoryComponent } from './editgroceryinventory/editgroceryinventory.component';
-import { DeleteGroceryCategoryInventoryComponent } from './delete-grocery-category-inventory/delete-grocery-category-inventory.component';
-import { AddGroceryInventoryComponent } from './add-grocery-inventory/add-grocery-inventory.component';
-import { GrocerySubcategoryInventoryComponent } from './grocery-subcategory-inventory/grocery-subcategory-inventory.component';
-import { EditGrocerySubcategoryComponent } from './edit-grocery-subcategory/edit-grocery-subcategory.component';
-import { DeleteGrocerySubcategoryInventoryComponent } from './delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
-import { AddGrocerySubcategoryInventoryComponent } from './add-grocery-subcategory-inventory/add-grocery-subcategory-inventory.component';
+import { GroceryInventoryComponent } from './Grocery/grocery-inventory/grocery-inventory.component';
+import { EditgroceryinventoryComponent } from './Grocery/editgroceryinventory/editgroceryinventory.component';
+import { DeleteGroceryCategoryInventoryComponent } from './Grocery/delete-grocery-category-inventory/delete-grocery-category-inventory.component';
+import { AddGroceryInventoryComponent } from './Grocery/add-grocery-inventory/add-grocery-inventory.component';
+import { GrocerySubcategoryInventoryComponent } from './Grocery/grocery-subcategory-inventory/grocery-subcategory-inventory.component';
+import { EditGrocerySubcategoryComponent } from './Grocery/edit-grocery-subcategory/edit-grocery-subcategory.component';
+import { DeleteGrocerySubcategoryInventoryComponent } from './Grocery/delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
+import { AddGrocerySubcategoryInventoryComponent } from './Grocery/add-grocery-subcategory-inventory/add-grocery-subcategory-inventory.component';
+import { GroceryRoutingModule } from './Grocery/grocery-routing.module';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { AddGrocerySubcategoryInventoryComponent } from './add-grocery-subcatego
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    GroceryRoutingModule,
     MatAutocompleteModule,
         MatBadgeModule,
         MatButtonModule,

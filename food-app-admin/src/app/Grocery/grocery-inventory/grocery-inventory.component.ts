@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { Category } from 'src/model/Category';
 import { MatTableDataSource } from '@angular/material/table';
-import { Grocerycategory } from '../data-interfaces';
+import { Grocerycategory } from '../../data-interfaces';
 import { EditgroceryinventoryComponent } from '../editgroceryinventory/editgroceryinventory.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteGroceryCategoryInventoryComponent } from '../delete-grocery-category-inventory/delete-grocery-category-inventory.component';

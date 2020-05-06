@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { SubCategory } from 'src/model/SubCategory';
 import { MatTableDataSource } from '@angular/material/table';
 import { Category } from 'src/model/Category';
-import { Grocerycategory } from '../data-interfaces';
+import { Grocerycategory } from '../../data-interfaces';
 import { Router } from '@angular/router';
 import { DeleteGrocerySubcategoryInventoryComponent } from '../delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { MatDialog } from '@angular/material/dialog';

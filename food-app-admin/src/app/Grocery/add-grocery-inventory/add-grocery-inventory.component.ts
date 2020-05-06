@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Category } from 'src/model/Category';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DataApiService } from '../data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
 
 @Component({
