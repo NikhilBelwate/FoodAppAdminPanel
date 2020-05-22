@@ -1,49 +1,143 @@
-
-<div class="container">
-<p>show-order-details works!</p>
-<hr/>
-{{ orderInfo | json}}
-<hr/>
-{{ statusRecord[0] | json}}
-
-<hr/>
-{{ statusRecord[1] | json}}
-<hr/>
-{{ statusRecord[2] | json}}
-<hr/>
-
-  <!--
-    <mat-form-field>
-        <mat-label>New status</mat-label>
-    <mat-select [(value)]='newStatus'>
-        <mat-option value="Accept">Accept</mat-option>
-        <mat-option value="food_preparing">Food Preparing</mat-option>
-        <mat-option value="out_for_delivery">Out For Delivery</mat-option>
-        <mat-option value="food_delivered">Food Delivered</mat-option>
-    </mat-select>
-    </mat-form-field>-->
-
-    
-
-    <h3>Set new status for order no {{orderInfo.OrderID}}</h3>
-
-  <!--<mat-label>NEW STATUS</mat-label>
-  <select matNativeControl [(ngModel)]='newStatus'>
-    <option value="Accept" selected>Accept</option>
-    <option value="food_preparing">Food Preparing</option>
-    <option value="out_for_delivery">Out For Delivery</option>
-    <option value="food_delivered">Food Delivered</option>
-  </select>
-    <mat-form-field>
-    <button (click)="changeStatus()">Save New Status {{newStatus}}</button>
-    </mat-form-field>-->
-    <div class="form" style="background-color: black;">
-    <mat-form-field>
-      <mat-label>State</mat-label>
-      <mat-select>
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let state of foods" [value]="state">{{state}}</mat-option>
-      </mat-select>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Delivery Details
+      </mat-panel-title>
+      <mat-panel-description>
+        Click to check the delivery details
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Address"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.Address">
     </mat-form-field>
   </div>
-</div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Email"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.email">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Full Name"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.fullName">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Mobile No"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.mobileNo">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="PinCode"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.pinCode">
+    </mat-form-field>
+  </div>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Billing Details
+      </mat-panel-title>
+      <mat-panel-description>
+        Click to check the Billing Details
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="CGST"  name="title"  [(ngModel)]="orderInfo.OrderDetails.cgst">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="SGST"  name="title"  [(ngModel)]="orderInfo.OrderDetails.sgst">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Total Food Price"  name="title"  [(ngModel)]="orderInfo.OrderDetails.totalPrice">
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Delivery Price"  name="title"  [(ngModel)]="orderInfo.OrderDetails.delivaryCharge">
+    </mat-form-field>
+  </div>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Order Details
+      </mat-panel-title>
+      <mat-panel-description>
+       Click to check the order details
+        <mat-icon>date_range</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let foodList of orderInfo.OrderDetails.foodList">
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Food Name"  name="title"  [(ngModel)]="foodList.foodName">
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Food Price"  name="title"  [(ngModel)]="foodList.foodPrice">
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Food Quantity"  name="title"  [(ngModel)]="foodList.qty">
+      </mat-form-field>
+  </div>
+  </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <br/>
+  <div class="status">
+    <mat-form-field >
+      <mat-label>Current Status</mat-label>
+      <input matInput #input class="form-control" placeholder="Current Status"  name="title"  [(ngModel)]="orderInfo.Status">
+    </mat-form-field>
+    <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
+        <mat-select placeholder="Select New Status" >
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let statusData of foodStatus" [value]="statusData">
+              {{statusData}}
+              </mat-option>
+          </mat-select>
+          
+    </mat-form-field>
+    <ng-template #loggedOut>
+    <mat-form-field>
+      <mat-select placeholder="Select New Status" >
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let statusData1 of otherStatus" [value]="statusData1">
+            {{statusData1}}
+            </mat-option>
+        </mat-select>
+  </mat-form-field>
+</ng-template>
+      <button mat-raised-button color="warn" (click) = "updateStatus(orderInfo.OrderID,orderInfo.Token)">Update Status</button>
+  </div>
+
+</mat-accordion>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

@@ -44,12 +44,18 @@ import { Category } from 'src/model/Category';
     export interface Order {
         OrderID: string;
         UserID: string;
-        HotelID: string;
+        HotelID: number;
         DeliveryDetails: DeliveryDetails;
         OrderDetails: OrderDetails;
         Total_price: string;
         Status: string;
         Time: string;
+        Token:string;
+    }
+
+    export interface Roles {
+        roleId: number;
+        roleName: String;
     }
 
     export interface Data {

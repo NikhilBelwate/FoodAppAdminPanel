@@ -19,8 +19,8 @@ export class EditgroceryinventoryComponent implements OnInit {
   }
     userProfileForm = this.fb.group({
       categoryId:[''],
-      categoryName:['',Validators.required],
-      categoryUrl:['']
+      categoryName:['',[Validators.required,Validators.pattern(/[^0-9]/g)]],
+      categoryUrl:['',Validators.required]
     })
 
     @Output() messageEvent = new EventEmitter<Boolean>();

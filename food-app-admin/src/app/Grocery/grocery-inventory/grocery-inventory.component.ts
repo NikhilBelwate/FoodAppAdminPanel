@@ -8,6 +8,8 @@ import { EditgroceryinventoryComponent } from '../editgroceryinventory/editgroce
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteGroceryCategoryInventoryComponent } from '../delete-grocery-category-inventory/delete-grocery-category-inventory.component';
 import { findIndex } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -27,8 +29,10 @@ export class GroceryInventoryComponent implements OnInit{
   public category;
   public categoryNameTemp:String;
   public categoryArray:any;
+  dataSource = new MatTableDataSource();
   @ViewChild(EditgroceryinventoryComponent) editGroceryComponentChild;
-
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   constructor(private router : Router,private dataServiceApi:DataApiService, public dialog: MatDialog) { 
 
@@ -41,6 +45,10 @@ export class GroceryInventoryComponent implements OnInit{
     this.addFlag=false;
     this.getCategoryDetails();
   }
+
+  ngAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
+  }
   getCategoryDetails() {
     this.dataServiceApi.getGroceryCategoryDetailsApi().subscribe(
       data =>{
@@ -48,8 +56,7 @@ export class GroceryInventoryComponent implements OnInit{
         this.categoryService=data;
         this.categoryArray = this.categoryService.categoryList;
         this.categoryList = this.categoryService.categoryList;
-        const matTable =  new MatTableDataSource(this.categoryList);
-        
+        this.dataSource.data = this.categoryList;
         this.dataServiceApi.dataChange.value.push(this.categoryArray);
         console.log(this.dataServiceApi.dataChange.value.length);
       },

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SubCategory } from 'src/model/SubCategory';
 import { Grocerycategory } from '../../data-interfaces';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
 
@@ -21,14 +21,14 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
 
   editSubcategoryProfileForm = this.fb.group({
     subCategoryId:[''],
-    subCategoryName:[''],
+    subCategoryName:['',[Validators.required]],
     categoryId:[''],
-    subCategoryPrice:[''],
-    subCategoryUrl:[''],
-    subCategoryDesc:[''],
+    subCategoryPrice:['',[Validators.required,Validators.pattern(/[0-9]/g)]],
+    subCategoryUrl:['',[Validators.required]],
+    subCategoryDesc:['',[Validators.required]],
     locationId:[''],
-    subCategoryTax:[''],
-    subCategoryUnit:[''],
+    subCategoryTax:['',[Validators.required,Validators.pattern(/[0-9]/g)]],
+    subCategoryUnit:['',[Validators.required]],
     categoryName:['']
   })
 

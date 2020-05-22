@@ -30,7 +30,7 @@
       
         <div class="form">
           <mat-form-field floatPlaceholder="never" color="accent">
-            <input matInput #filter placeholder="Filter issues" (keyup)="sendit($event.target.value)">
+            <input matInput #filter placeholder="Filter data" (keyup)="sendit($event.target.value)">
           </mat-form-field>
         </div>
       
@@ -78,7 +78,7 @@
 
           <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
-              <button mat-icon-button color="primary" (click)="addNew()">
+              <button mat-icon-button color="accent" (click)="addNew()">
                 <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
               </button>
             </mat-header-cell>

@@ -1,11 +1,10 @@
-<h1>order-table</h1>
-{{errormsg}}
-
-<hr/>
-<mat-form-field>
-  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search">
-</mat-form-field>
-<br/>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>Grocery
+    <p><button mat-button >Add/Update Grocery Category </button></p>
+    <p><button mat-button >Add/Update Grocery Products</button></p>
+</mat-drawer>
+<mat-drawer-content>
+<div class="container mat-elevation-z8">
 <mat-table [dataSource]="orderList" matSort class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -53,5 +52,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row (click)="showDetails(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-  
+</div>
+</mat-drawer-content>
+</mat-drawer-container>
   

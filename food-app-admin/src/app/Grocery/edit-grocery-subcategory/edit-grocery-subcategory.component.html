@@ -3,19 +3,15 @@
   
     <form class="mat-dialog-content" [formGroup] = "editSubcategoryProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
   
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory ID" [(ngModel)]="subCategory.subCategoryId" name="id" formControlName="subCategoryId" >
-         
-        </mat-form-field>
-      </div>
   
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="SubCategory Name" [(ngModel)]="subCategory.subCategoryName" name="title" formControlName="subCategoryName" >
-         
         </mat-form-field>
+        <span *ngIf="!editSubcategoryProfileForm.get('subCategoryName').valid" class="help-block">
+          Please enter a valid Sub Category Name
+        </span>
       </div>
       <div class="form">
         <mat-form-field color="accent" class="full-width">
@@ -27,6 +23,9 @@
               </mat-select>
          
         </mat-form-field>
+        <span *ngIf="!editSubcategoryProfileForm.get('categoryName').valid" class="help-block">
+          Please enter a valid Category Name
+        </span>
       </div>
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
@@ -34,18 +33,27 @@
           <input matInput #input class="form-control" placeholder="SubCategory Price" [(ngModel)]="subCategory.subCategoryPrice" name="title" formControlName="subCategoryPrice" >
          
         </mat-form-field>
+        <span *ngIf="!editSubcategoryProfileForm.get('subCategoryPrice').valid" class="help-block">
+          Please enter a valid SubCategory Price
+        </span>
       </div>
       <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="SubCategory URL" [(ngModel)]="subCategory.subCategoryUrl" name="title" formControlName="subCategoryUrl" >
          
         </mat-form-field>
+        <span *ngIf="!editSubcategoryProfileForm.get('subCategoryUrl').valid" class="help-block">
+          Please enter a valid SubCategory URL
+        </span>
       </div>
       <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="SubCategory Decription" [(ngModel)]="subCategory.subCategoryDesc" name="title" formControlName="subCategoryDesc" >
          
         </mat-form-field>
+        <span *ngIf="!editSubcategoryProfileForm.get('subCategoryDesc').valid" class="help-block">
+          Please enter a valid SubCategory Decription
+        </span>
       </div>
       <div class="form">
         <mat-form-field color="accent">
@@ -67,7 +75,7 @@
       </div>
 
       <div mat-dialog-actions>
-      <button type="submit" [disabled]="!formControl.valid" >Update</button>
+      <button type="submit" mat-button color="accent" [disabled]="!formControl.valid" >Update</button>
     </div>
     
   

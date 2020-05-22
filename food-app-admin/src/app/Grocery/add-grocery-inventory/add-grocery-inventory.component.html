@@ -1,5 +1,5 @@
-<div class="container">
-    <h3 mat-dialog-title>Issue id: {{category.categoryId}}</h3>
+<mat-drawer-container class="example-container">
+    <h3 mat-dialog-title>Add New Category</h3>
   
     <form class="mat-dialog-content" [formGroup] = "userProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
   
@@ -29,4 +29,4 @@
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
       </div>-->
     </form>
-  </div>
+</mat-drawer-container>

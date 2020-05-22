@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpErrorResponse, HttpParams, HttpClient } from '@angular/common/http';
-import { Observable, from, BehaviorSubject } from 'rxjs';
+import { Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Data, Order, Records, Grocerycategory } from './data-interfaces';
+import { Data, Order, Records, Grocerycategory, Roles } from './data-interfaces';
 import { Category } from 'src/model/Category';
 import { SubCategory } from 'src/model/SubCategory';
 //import 'rxjs/add/operator/map';
@@ -26,8 +26,14 @@ export class DataApiService {
   };
 
   dataChange: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+  private getFoodOrderSource = new BehaviorSubject<Order>(null);
+  foodOrder$ = this.getFoodOrderSource.asObservable();
+
+  getFoodOrderResult(order:Order){
+    this.getFoodOrderSource.next(order);
+  }
  // getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
-  getOrdersListUrl:string="http://www.mocky.io/v2/5e80c0ee3000004a006f9575"
+  getOrdersListUrl:string="http://www.json-generator.com/api/json/get/bQZMmVNZVe?indent=2"
 
   //getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
   getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
@@ -51,6 +57,8 @@ export class DataApiService {
 
   deleteSubCategoryDetails:string = "http://localhost:8080/deleteSubCategoryDetails";
 
+  getMasterRoles:string = "http://localhost:8080/getMasterRoles";
+
   constructor(private _http:HttpClient) {
     this.httpOptions.headers =this.httpOptions.headers.set('Authorization', 'my-new-auth-token');
    }
@@ -65,7 +73,11 @@ public setNewStatusOnServer(valeset:HttpParams): Observable<string>{
 
 }
 
-
+  public getMasterRolesDetails():Observable<Roles[]>{
+    return this._http.get<Roles[]>(this.getMasterRoles).pipe(
+      catchError(this.errorHandler)
+    );
+  }
 
    //HTTP GET
   public getStatusHistoryRecords(orderID:number): Observable<Records>{

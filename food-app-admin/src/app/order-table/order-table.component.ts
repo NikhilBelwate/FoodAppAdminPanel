@@ -15,6 +15,7 @@ export class OrderTableComponent implements OnInit {
   displayedColumns: string[] = ['OrderID', 'UserID', 'HotelID','mobileNo', 'DeliveryDetails','Total_price', 'Status'];
   public ordersData:Data;
   public orderList;
+  public foodOrderData:Order;
 
   @ViewChild(MatSort) sort:MatSort;
   
@@ -22,7 +23,6 @@ export class OrderTableComponent implements OnInit {
   constructor(private _dataApiService:DataApiService, private router: Router) { }
 
   ngOnInit(): void {
-    alert("Inside Order Table");
     this._dataApiService.getOrdersListData().subscribe(
       data => {
           this.ordersData=data;
@@ -40,6 +40,8 @@ export class OrderTableComponent implements OnInit {
   }
   showDetails(row){
     alert(row);
+    this.foodOrderData = row;
+    this._dataApiService.getFoodOrderResult(this.foodOrderData);
     this.router.navigate(["/details",row.OrderID]);
   }
 

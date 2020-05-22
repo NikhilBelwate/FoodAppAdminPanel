@@ -1,14 +1,11 @@
-<div>
-    Message from parent : {{category.categoryId}}, {{category.categoryName}}, {{category.categoryImgUrl}}
-</div>
-<div class="container">
+<mat-drawer-container class="example-container">
     <h3 mat-dialog-title>Issue id: {{category.categoryId}}</h3>
   
     <form class="mat-dialog-content" [formGroup] = "userProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
   
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Category ID" [(ngModel)]="category.categoryId" name="id" formControlName="categoryId" >
+          <input matInput #input class="form-control" placeholder="Category ID" readonly [(ngModel)]="category.categoryId" name="id" formControlName="categoryId" >
          
         </mat-form-field>
       </div>
@@ -17,8 +14,10 @@
       <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="Category Name" [(ngModel)]="category.categoryName" name="title" formControlName="categoryName" >
-         
         </mat-form-field>
+        <span *ngIf="!userProfileForm.get('categoryName').valid" class="help-block">
+          Please enter a valid Category Name
+        </span>
       </div>
   
       <!--Contains mat-hint for characters count and has maxLengt set-->
@@ -29,8 +28,8 @@
           <!--<mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>-->
         </mat-form-field>
       </div>
-      <div mat-dialog-actions>
-      <button type="submit" [disabled]="!formControl.valid" >Update</button>
+      <div mat-dialog-actions >
+      <button type="submit"  mat-button color="accent" [disabled]="!formControl.valid" >Update</button>
     </div>
     
   
@@ -39,5 +38,5 @@
         <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
       </div>-->
     </form>
-  </div>
+</mat-drawer-container>
   
