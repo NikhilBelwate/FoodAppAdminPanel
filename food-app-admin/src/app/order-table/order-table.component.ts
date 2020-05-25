@@ -39,8 +39,9 @@ export class OrderTableComponent implements OnInit {
    
   }
   showDetails(row){
-    alert(row);
+    alert(JSON.stringify(row));
     this.foodOrderData = row;
+    console.log(this.foodOrderData);
     this._dataApiService.getFoodOrderResult(this.foodOrderData);
     this.router.navigate(["/details",row.OrderID]);
   }

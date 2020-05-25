@@ -32,8 +32,8 @@ export class DataApiService {
   getFoodOrderResult(order:Order){
     this.getFoodOrderSource.next(order);
   }
- // getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
-  getOrdersListUrl:string="http://www.json-generator.com/api/json/get/bQZMmVNZVe?indent=2"
+  getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
+  //getOrdersListUrl:string="http://www.json-generator.com/api/json/get/bQZMmVNZVe?indent=2"
 
   //getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
   getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
@@ -59,14 +59,16 @@ export class DataApiService {
 
   getMasterRoles:string = "http://localhost:8080/getMasterRoles";
 
+  updateAdminStatusUrl ="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php";
+
   constructor(private _http:HttpClient) {
     this.httpOptions.headers =this.httpOptions.headers.set('Authorization', 'my-new-auth-token');
    }
 
 //HTTP POST
-public setNewStatusOnServer(valeset:HttpParams): Observable<string>{
+public setNewStatusOnServer(orderDetails:Order): Observable<string>{
 
-  return this._http.post<string>(this.submitStatusChangeUrl,valeset.toString(),this.httpOptions).pipe(
+  return this._http.post<string>(this.updateAdminStatusUrl,orderDetails).pipe(
     catchError(this.errorHandler)
   );//catch(this.errorHandler);
 

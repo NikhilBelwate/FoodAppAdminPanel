@@ -1,3 +1,4 @@
+<div>{{orderInfo | json}}</div>
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
@@ -111,10 +112,10 @@
   <div class="status">
     <mat-form-field >
       <mat-label>Current Status</mat-label>
-      <input matInput #input class="form-control" placeholder="Current Status"  name="title"  [(ngModel)]="orderInfo.Status">
+      <input matInput #input class="form-control" placeholder="Current Status"  name="title">
     </mat-form-field>
     <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
-        <mat-select placeholder="Select New Status" >
+        <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
             <mat-option>--</mat-option>
             <mat-option *ngFor="let statusData of foodStatus" [value]="statusData">
               {{statusData}}
@@ -124,7 +125,7 @@
     </mat-form-field>
     <ng-template #loggedOut>
     <mat-form-field>
-      <mat-select placeholder="Select New Status" >
+      <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
           <mat-option>--</mat-option>
           <mat-option *ngFor="let statusData1 of otherStatus" [value]="statusData1">
             {{statusData1}}

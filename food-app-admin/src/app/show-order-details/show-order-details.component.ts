@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteGroceryCategoryInventoryComponent } from '../Grocery/delete-grocery-category-inventory/delete-grocery-category-inventory.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-order-details',
@@ -15,6 +16,7 @@ import { DeleteGroceryCategoryInventoryComponent } from '../Grocery/delete-groce
 export class ShowOrderDetailsComponent implements OnInit {
 
   newStatus:string;
+  statusTestMsg:String;
   orderID:number;
   orderInfo:Order;
   orderInfo1:Order;
@@ -25,6 +27,7 @@ export class ShowOrderDetailsComponent implements OnInit {
   foodStatus = ["Order has been Placed","Order Confirmed","Food Out for delivery","Order Cancelled by the Hotel"];
   otherStatus = ["Order has been Placed","Order Out for delivery","Order Cancelled"];
   url;
+  private stopSubs:Subscription;
   @Input() public foodOrderData:Order;
   constructor(private route:ActivatedRoute, private _dataApiService:DataApiService,public dialog: MatDialog) { 
 
@@ -45,24 +48,34 @@ export class ShowOrderDetailsComponent implements OnInit {
     this.step--;
   }
   sendNotification(title,msg,token){
-    this.url="http://zazafood.epizy.com/foodAppAPI/send_notification.php?title="+title+"&msg="+msg+"&token="+token;
+    this.url="http://zazafood.epizy.com/foodAppAPI/send_notification2.php?title="+title+"&msg="+msg+"&token="+token;
     window.open(this.url, '_blank').focus();
   }
   updateStatus(orderId,token){
+
       /*const dialogRef = this.dialog.open(DeleteGroceryCategoryInventoryComponent, {
         
       });*/
-      alert(this.orderInfo1.Token);
-      this.sendNotification("Welcome User","Hello",this.orderInfo1.Token);
+      alert(this.orderInfo.Token);
+      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'" }',this.orderInfo.Token);
+      this._dataApiService.setNewStatusOnServer(this.orderInfo).subscribe(
+        data=>{
+          alert(JSON.stringify(data));
+        },
+        error=>{
+          this.errormsg=error.message;
+          alert(this.errormsg);
+        }
+      );
   }
   ngOnInit(): void {
     
     //this.orderID= parseInt(this.route.snapshot.paramMap.get("orderID"));
-    this._dataApiService.foodOrder$.subscribe(
+   this.stopSubs =  this._dataApiService.foodOrder$.subscribe(
       order => {
         this.orderInfo=order;
         //this.newStatus = this.orderInfo1.Status
-        console.log(this.orderInfo1);
+        console.log(this.orderInfo);
       },
       error=>{
         this.errormsg=error.message;
@@ -89,6 +102,9 @@ export class ShowOrderDetailsComponent implements OnInit {
   );
 }
 
+ngOnDestroy(){
+  this.stopSubs.unsubscribe();
+}
 changeStatus(){
  // alert(this.orderInfo.OrderID+" "+ this.newStatus+ " "+new Date().getTime());
 
@@ -97,7 +113,7 @@ changeStatus(){
     status:this.newStatus,
     time:new Date().getTime()
   }*/
-  const httpParams = new HttpParams().set('orderID', this.orderInfo.OrderID.toString())
+  /*const httpParams = new HttpParams().set('orderID', this.orderInfo.OrderID.toString())
   .set('status', this.newStatus).set('time', new Date().getTime().toString());
   //To get status changes record
   this._dataApiService.setNewStatusOnServer(httpParams).subscribe(
@@ -108,6 +124,6 @@ changeStatus(){
     error=>{
       this.errormsg=error.message;
     }
-  );
+  );*/
 }
 }
