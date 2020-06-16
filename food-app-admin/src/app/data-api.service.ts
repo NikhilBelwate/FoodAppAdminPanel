@@ -4,8 +4,8 @@ import { Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Data, Order, Records, Grocerycategory, Roles } from './data-interfaces';
-import { Category } from 'src/model/Category';
+import { Data, Order, Records, Grocerycategory, Roles, GrocerySubCategory } from './data-interfaces';
+import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
 //import 'rxjs/add/operator/map';
 
@@ -25,7 +25,7 @@ export class DataApiService {
     })
   };
 
-  dataChange: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+  dataChange: BehaviorSubject<Grocerycategory[]> = new BehaviorSubject<Grocerycategory[]>([]);
   private getFoodOrderSource = new BehaviorSubject<Order>(null);
   foodOrder$ = this.getFoodOrderSource.asObservable();
 
@@ -45,11 +45,15 @@ export class DataApiService {
   //submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
   submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
 
-  getGroceryCategoryDetails:string="http://localhost:8080/getCategoryDetails";
+  //getGroceryCategoryDetails:string="http://localhost:8080/authenticate";
 
-  getSubGroceryCategoryDetails:string="http://localhost:8080/getSubCategoryDetails";
+  getGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/GroceryCategory.php";
 
-  saveGroceryCategoryDetails:string="http://localhost:8080/saveCategoryDetails";
+  getSubGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/grocerySubCategory.php";
+
+  saveGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocery.php";
+
+  updateGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateGrocery.php";
 
   saveGrocerySubCategoryDetails:string="http://localhost:8080/saveSubCategoryDetails";
 
@@ -116,21 +120,35 @@ public setNewStatusOnServer(orderDetails:Order): Observable<string>{
   );
 }
 
- public saveGroceryCategoryDetailsApi(category:Category){
+ public saveGroceryCategoryDetailsApi(category:GroceryCategoryModel){
   console.log(JSON.stringify(category));
   return  this._http.post(this.saveGroceryCategoryDetails,category).pipe(
     catchError(this.errorHandler)
   );
 }
 
+public updateGroceryCategoryDetailsApi(category:GroceryCategoryModel){
+  console.log(JSON.stringify(category));
+  return  this._http.put(this.updateGroceryCategoryDetails,category).pipe(
+    catchError(this.errorHandler)
+  );
+}
+
   public getGroceryCategoryDetailsApi():Observable<Grocerycategory>{
+    
     return this._http.get<Grocerycategory>(this.getGroceryCategoryDetails).pipe(
       catchError(this.errorHandler)
     );
   }
 
-  public getGrocerySubCategoryDetailsApi():Observable<SubCategory[]>{
-    return this._http.get<SubCategory[]>(this.getSubGroceryCategoryDetails).pipe(
+  public authenticate():Observable<string>{
+    
+    return this._http.post<string>(this.getGroceryCategoryDetails,{"username":"foo","password":"foo"}).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+  public getGrocerySubCategoryDetailsApi():Observable<GrocerySubCategory>{
+    return this._http.get<GrocerySubCategory>(this.getSubGroceryCategoryDetails).pipe(
       catchError(this.errorHandler)
     );
   }

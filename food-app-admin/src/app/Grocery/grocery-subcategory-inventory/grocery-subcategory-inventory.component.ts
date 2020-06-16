@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataApiService } from '../../data-api.service';
 import { SubCategory } from 'src/model/SubCategory';
 import { MatTableDataSource } from '@angular/material/table';
-import { Category } from 'src/model/Category';
-import { Grocerycategory } from '../../data-interfaces';
+import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
+import { Grocerycategory, GrocerySubCategory } from '../../data-interfaces';
 import { Router } from '@angular/router';
 import { DeleteGrocerySubcategoryInventoryComponent } from '../delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -44,13 +44,13 @@ export class GrocerySubcategoryInventoryComponent implements OnInit {
     this.dataServiceApi.getGrocerySubCategoryDetailsApi().subscribe(
       data =>{
         console.log(data);
-        this.subCategoryList=data;
+        this.subCategoryList=data.items;
         this.filterSubCategoryList = this.subCategoryList;
         // Getting the name of the category from the category Id and mapping it in the Sub Category List
         this.subCategoryList.map(x=>{
-          x.categoryName=this.categoryService.categoryList.find(y=>y.categoryId===x.categoryId).categoryName
+          x.CategoryName=this.categoryService.categoryList.find(y=>y.GroceryCategoryId===x.CategoryId).CategoryName
         });
-       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.categoryId===x.categoryId))
+       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.GroceryCategoryId===x.CategoryId))
        
         const matTable =  new MatTableDataSource(this.subCategoryList);
         
@@ -78,7 +78,7 @@ export class GrocerySubcategoryInventoryComponent implements OnInit {
 sendit(data){
     data = data.toLowerCase();
     this.subCategoryList = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
-    const objData = (subCat.subCategoryName+subCat.subCategoryPrice+subCat.subCategoryUrl+subCat.Unit+subCat.categoryName+subCat.subCategoryDesc+subCat.locationId+subCat.subCategoryPrice+subCat.subCategoryTax+subCat.subCategoryId).toLowerCase();
+    const objData = (subCat.SubCategoryName+subCat.SubCategoryPrice+subCat.SubCategoryUrl+subCat.Unit+subCat.CategoryName+subCat.SubCategoryDesc+subCat.LocationId+subCat.SubCategoryPrice+subCat.SubCategoryId).toLowerCase();
     return objData.includes(data);
    });
 }
@@ -107,7 +107,7 @@ showDetails(inventoryName){
     this.router.navigate(["/grocery"]);
   }
   else if(inventoryName=='Food'){
-    alert(inventoryName);
+    //alert(inventoryName);
     this.router.navigate(["/subCategory"]);
   }
 }

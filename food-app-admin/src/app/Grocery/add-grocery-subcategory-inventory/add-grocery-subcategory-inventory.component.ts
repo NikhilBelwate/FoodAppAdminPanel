@@ -35,7 +35,7 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
-    this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.categoryName);
+    this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
   }
 
   getCategoryList() {
@@ -50,8 +50,8 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
   onSubmit(){
     // console.warn(this.userProfileForm.value);
     const categoryName = this.editSubcategoryProfileForm.get('categoryName').value;
-    const categoryId = this.categoryService.categoryList.find(x=>x.categoryName===categoryName).categoryId
-    this.subCategory.categoryId = categoryId;
+    const categoryId = this.categoryService.categoryList.find(x=>x.CategoryName===categoryName).GroceryCategoryId
+    this.subCategory.CategoryId = categoryId;
       this.dataServiceApi.saveGrocerySubCategoryDetailsApi(this.subCategory).subscribe(
        data =>{
          console.log(data);

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataApiService } from '../../data-api.service';
-import { Category } from 'src/model/Category';
+import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { MatTableDataSource } from '@angular/material/table';
 import { Grocerycategory } from '../../data-interfaces';
 import { EditgroceryinventoryComponent } from '../editgroceryinventory/editgroceryinventory.component';
@@ -88,13 +88,13 @@ export class GroceryInventoryComponent implements OnInit{
   }
 
   addNew() {
-    this.category = new Category(0,"","");
+    this.category = new GroceryCategoryModel(0,"","");
     this.addFlag = true;
     };
 
   startEdit(i: number, categoryId: number, categoryName: string, categoryUrl: string) {
     this.id = categoryId;
-    this.category = new Category(categoryId,categoryName,categoryUrl);
+    this.category = new GroceryCategoryModel(categoryId,categoryName,categoryUrl);
     //this.category.categoryId = categoryId;
     //this.category.categoryName = categoryName;
     //this.category.categoryImgUrl = categoryUrl; 
@@ -105,7 +105,7 @@ export class GroceryInventoryComponent implements OnInit{
 }
 
 deleteItem(i: number, categoryId: number, categoryName: string, categoryUrl: string) {
-  this.category = new Category(categoryId,categoryName,categoryUrl);
+  this.category = new GroceryCategoryModel(categoryId,categoryName,categoryUrl);
   console.log(this.category);
   const dialogRef = this.dialog.open(DeleteGroceryCategoryInventoryComponent, {
     data: {category:this.category}

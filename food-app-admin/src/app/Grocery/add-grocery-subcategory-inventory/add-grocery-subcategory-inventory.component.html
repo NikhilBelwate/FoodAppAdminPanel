@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 mat-dialog-title>Sub Category id: {{subCategory.subCategoryId}}</h3>
+    <h3 mat-dialog-title>Sub Category id: {{subCategory.SubCategoryId}}</h3>
   
     <form class="mat-dialog-content" [formGroup] = "editSubcategoryProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
   
@@ -13,7 +13,7 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory Name" [(ngModel)]="subCategory.subCategoryName" name="title" formControlName="subCategoryName" >
+          <input matInput #input class="form-control" placeholder="SubCategory Name" [(ngModel)]="subCategory.SubCategoryName" name="title" formControlName="subCategoryName" >
          
         </mat-form-field>
         <span *ngIf="!editSubcategoryProfileForm.get('subCategoryName').valid && editSubcategoryProfileForm.get('subCategoryName').touched" class="help-block">
@@ -37,7 +37,7 @@
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory Price" [(ngModel)]="subCategory.subCategoryPrice" name="title" formControlName="subCategoryPrice" >
+          <input matInput #input class="form-control" placeholder="SubCategory Price" [(ngModel)]="subCategory.SubCategoryPrice" name="title" formControlName="subCategoryPrice" >
          
         </mat-form-field>
         <span *ngIf="!editSubcategoryProfileForm.get('subCategoryPrice').valid && editSubcategoryProfileForm.get('subCategoryPrice').touched" class="help-block">
@@ -46,7 +46,7 @@
       </div>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory URL" [(ngModel)]="subCategory.subCategoryUrl" name="title" formControlName="subCategoryUrl" >
+          <input matInput #input class="form-control" placeholder="SubCategory URL" [(ngModel)]="subCategory.SubCategoryUrl" name="title" formControlName="subCategoryUrl" >
          
         </mat-form-field>
         <span *ngIf="!editSubcategoryProfileForm.get('subCategoryUrl').valid && editSubcategoryProfileForm.get('subCategoryUrl').touched" class="help-block">
@@ -55,7 +55,7 @@
       </div>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory Decription" [(ngModel)]="subCategory.subCategoryDesc" name="title" formControlName="subCategoryDesc" >
+          <input matInput #input class="form-control" placeholder="SubCategory Decription" [(ngModel)]="subCategory.SubCategoryDesc" name="title" formControlName="subCategoryDesc" >
          
         </mat-form-field>
         <span *ngIf="!editSubcategoryProfileForm.get('subCategoryDesc').valid && editSubcategoryProfileForm.get('subCategoryDesc').touched" class="help-block">
@@ -64,19 +64,19 @@
       </div>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Location Id" [(ngModel)]="subCategory.locationId" name="title" formControlName="locationId" >
+          <input matInput #input class="form-control" placeholder="Location Id" [(ngModel)]="subCategory.LocationId" name="title" formControlName="locationId" >
          
         </mat-form-field>
       </div>
-      <div class="form">
+     <!-- <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory Tax rate" [(ngModel)]="subCategory.subCategoryTax" name="title" formControlName="subCategoryTax" >
+          <input matInput #input class="form-control" placeholder="SubCategory Tax rate" [(ngModel)]="subCategory.SubCategoryTax" name="title" formControlName="subCategoryTax" >
          
         </mat-form-field>
-      </div>
+      </div>-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory Unit" [(ngModel)]="subCategory.unit" name="title" formControlName="subCategoryUnit" >
+          <input matInput #input class="form-control" placeholder="SubCategory Unit" [(ngModel)]="subCategory.Unit" name="title" formControlName="subCategoryUnit" >
          
         </mat-form-field>
       </div>

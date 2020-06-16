@@ -42,7 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroceryInventoryComponent } from './Grocery/grocery-inventory/grocery-inventory.component';
@@ -54,6 +54,7 @@ import { EditGrocerySubcategoryComponent } from './Grocery/edit-grocery-subcateg
 import { DeleteGrocerySubcategoryInventoryComponent } from './Grocery/delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { AddGrocerySubcategoryInventoryComponent } from './Grocery/add-grocery-subcategory-inventory/add-grocery-subcategory-inventory.component';
 import { GroceryRoutingModule } from './Grocery/grocery-routing.module';
+import { CustomHttpInterceptor } from './CustomHttpInterceptor';
 
 @NgModule({
   declarations: [
@@ -150,6 +151,8 @@ import { GroceryRoutingModule } from './Grocery/grocery-routing.module';
         MatNativeDateModule
     ],
   providers: [FormsModule],
+  // For calling the interceptor class
+ // providers: [FormsModule,{provide:HTTP_INTERCEPTORS,useClass:CustomHttpInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -34,17 +34,17 @@
           <!-- ID Column -->
           <ng-container matColumnDef="categoryId">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Category ID</mat-header-cell>
-            <mat-cell *matCellDef="let row" >{{row.categoryId}}</mat-cell>
+            <mat-cell *matCellDef="let row" >{{row.GroceryCategoryId}}</mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="categoryName">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Category Name</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.categoryName}}</mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.CategoryName}}</mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="categoryImgUrl">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Category Image URL</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.categoryImgUrl}}</mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.CategoryImage}}</mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="actions">
@@ -54,10 +54,10 @@
               </button>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index;">
-              <button mat-icon-button color="accent" (click)="startEdit(i, row.categoryId, row.categoryName, row.categoryImgUrl)">
+              <button mat-icon-button color="accent" (click)="startEdit(i, row.GroceryCategoryId, row.CategoryName, row.CategoryImage)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
               </button>
-              <button mat-icon-button color="accent" (click)="deleteItem(i, row.categoryId, row.categoryName, row.categoryImgUrl)">
+              <button mat-icon-button color="accent" (click)="deleteItem(i, row.GroceryCategoryId, row.CategoryName, row.CategoryImage)">
                 <mat-icon aria-label="Delete">delete</mat-icon>
               </button>
               </mat-cell>

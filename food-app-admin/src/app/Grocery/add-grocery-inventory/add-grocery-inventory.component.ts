@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Category } from 'src/model/Category';
+import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddGroceryInventoryComponent implements OnInit {
 
-  @Input() public category:Category;
+  @Input() public category:GroceryCategoryModel;
   public addFlag:boolean=false;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) {
 

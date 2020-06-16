@@ -1,23 +1,23 @@
 export class SubCategory
 {
-    subCategoryId:number;
-    subCategoryName:string;
-    categoryId:number;
-    subCategoryPrice:number;
-    subCategoryUrl:string;
-    subCategoryDesc:string;
-    locationId:number;
-    subCategoryTax:number;
-    unit:string;
-    categoryName:string;
+    SubCategoryId:number;
+    SubCategoryName:string;
+    CategoryId:number;
+    SubCategoryPrice:number;
+    SubCategoryUrl:string;
+    SubCategoryDesc:string;
+    LocationId:number;
+    //subCategoryTax:number;
+    Unit:string;
+    CategoryName:string;
 
     constructor(){}
 
-    set SubCategoryId(val:number){
-        this.subCategoryId=val;
-    }
+    /*set SubCategoryId(val:number){
+        this.SubCategoryId=val;
+    }*/
 
-    set SubCategoryName(val:string){
+    /*set SubCategoryName(val:string){
         this.subCategoryName=val;
     }
 
@@ -83,6 +83,6 @@ export class SubCategory
 
     get Unit():string{
         return this.unit;
-    }
+    }*/
 
 }

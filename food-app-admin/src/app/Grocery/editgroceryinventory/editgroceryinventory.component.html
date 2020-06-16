@@ -1,11 +1,11 @@
 <mat-drawer-container class="example-container">
-    <h3 mat-dialog-title>Issue id: {{category.categoryId}}</h3>
+    <h3 mat-dialog-title>Issue id: {{category.GroceryCategoryId}}</h3>
   
     <form class="mat-dialog-content" [formGroup] = "userProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
   
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Category ID" readonly [(ngModel)]="category.categoryId" name="id" formControlName="categoryId" >
+          <input matInput #input class="form-control" placeholder="Category ID" readonly [(ngModel)]="category.GroceryCategoryId" name="id" formControlName="categoryId" >
          
         </mat-form-field>
       </div>
@@ -13,7 +13,7 @@
       <!--Textarea for demo purposes-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Category Name" [(ngModel)]="category.categoryName" name="title" formControlName="categoryName" >
+          <input matInput #input class="form-control" placeholder="Category Name" [(ngModel)]="category.CategoryName" name="title" formControlName="categoryName" >
         </mat-form-field>
         <span *ngIf="!userProfileForm.get('categoryName').valid" class="help-block">
           Please enter a valid Category Name
@@ -23,7 +23,7 @@
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #inputstate class="form-control" placeholder="Category Image URl" [(ngModel)]="category.categoryImgUrl" name="state" maxlength="10" formControlName="categoryUrl" >
+          <input matInput #inputstate class="form-control" placeholder="Category Image URl" [(ngModel)]="category.CategoryImage" name="state" maxlength="10" formControlName="categoryUrl" >
           
           <!--<mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>-->
         </mat-form-field>

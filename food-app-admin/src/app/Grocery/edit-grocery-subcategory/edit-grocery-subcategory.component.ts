@@ -20,22 +20,22 @@ export class EditGrocerySubcategoryComponent implements OnInit {
 
   editSubcategoryProfileForm = this.fb.group({
     subCategoryId:[''],
-    subCategoryName:['',[Validators.required]],
+    SubCategoryName:['',[Validators.required]],
     categoryId:[''],
-    subCategoryPrice:['',[Validators.required,Validators.pattern(/[0-9]/g)]],
-    subCategoryUrl:['',[Validators.required]],
-    subCategoryDesc:['',[Validators.required]],
-    locationId:[''],
+    SubCategoryPrice:['',[Validators.required,Validators.pattern(/[0-9]/g)]],
+    SubCategoryUrl:['',[Validators.required]],
+    SubCategoryDesc:['',[Validators.required]],
+    LocationId:[''],
     subCategoryTax:['',[Validators.required,Validators.pattern(/[0-9]/g)]],
     subCategoryUnit:['',[Validators.required]],
-    categoryName:['',[Validators.required]]
+    CategoryName:['',[Validators.required]]
   })
 
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
     // set the value of dropdown
-    this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.categoryName);
+    this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
   }
 
   getCategoryList() {
@@ -50,9 +50,9 @@ export class EditGrocerySubcategoryComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<Boolean>();
   onSubmit(){
     // console.warn(this.userProfileForm.value);
-    const categoryName = this.editSubcategoryProfileForm.get('categoryName').value;
-    const categoryId = this.categoryService.categoryList.find(x=>x.categoryName===categoryName).categoryId
-    this.subCategory.categoryId = categoryId;
+    const categoryName = this.editSubcategoryProfileForm.get('CategoryName').value;
+    const categoryId = this.categoryService.categoryList.find(x=>x.CategoryName===categoryName).GroceryCategoryId
+    this.subCategory.CategoryId = categoryId;
       this.dataServiceApi.saveGrocerySubCategoryDetailsApi(this.subCategory).subscribe(
        data =>{
          console.log(data);
