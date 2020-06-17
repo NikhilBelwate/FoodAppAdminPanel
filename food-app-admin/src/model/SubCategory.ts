@@ -7,7 +7,7 @@ export class SubCategory
     SubCategoryUrl:string;
     SubCategoryDesc:string;
     LocationId:number;
-    //subCategoryTax:number;
+    SubCategoryTax:number;
     Unit:string;
     CategoryName:string;
 

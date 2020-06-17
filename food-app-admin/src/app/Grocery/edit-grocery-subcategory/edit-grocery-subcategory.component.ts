@@ -53,7 +53,7 @@ export class EditGrocerySubcategoryComponent implements OnInit {
     const categoryName = this.editSubcategoryProfileForm.get('CategoryName').value;
     const categoryId = this.categoryService.categoryList.find(x=>x.CategoryName===categoryName).GroceryCategoryId
     this.subCategory.CategoryId = categoryId;
-      this.dataServiceApi.saveGrocerySubCategoryDetailsApi(this.subCategory).subscribe(
+      this.dataServiceApi.updateGrocerySubCategoryDetailsApi(this.subCategory).subscribe(
        data =>{
          console.log(data);
          alert("Sub Category Records Updated Succesfully");

@@ -55,11 +55,19 @@ export class DataApiService {
 
   updateGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateGrocery.php";
 
-  saveGrocerySubCategoryDetails:string="http://localhost:8080/saveSubCategoryDetails";
+  updateGrocerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateGrocerySubcategory.php";
 
-  deleteCategoryDetails:string="http://localhost:8080/deleteCategoryDetails";
+  //saveGrocerySubCategoryDetails:string="http://localhost:8080/saveSubCategoryDetails";
 
-  deleteSubCategoryDetails:string = "http://localhost:8080/deleteSubCategoryDetails";
+  saveGrocerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocerySubcategory.php";
+
+  //deleteCategoryDetails:string="http://localhost:8080/deleteCategoryDetails";
+
+  deleteCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/deleteGroceryCategory.php";
+
+  //deleteSubCategoryDetails:string = "http://localhost:8080/deleteSubCategoryDetails";
+
+  deleteSubCategoryDetails:string = "http://foodapp.dx.am/FoodApp/foodAppAPI/deleteGrocerySubCategory.php";
 
   getMasterRoles:string = "http://localhost:8080/getMasterRoles";
 
@@ -97,7 +105,7 @@ public setNewStatusOnServer(orderDetails:Order): Observable<string>{
 
   public deleteGroceryCategoryDetailsApi(id:number){
     console.log(id);
-    this.url = this.deleteCategoryDetails + "/" + id;
+    this.url = this.deleteCategoryDetails + "?" + "categoryId="+id;
     console.log(this.url);
     return this._http.delete<Grocerycategory>(this.url).pipe(
      catchError(this.errorHandler)
@@ -106,7 +114,7 @@ public setNewStatusOnServer(orderDetails:Order): Observable<string>{
 
  public deleteSubGroceryCategoryDetailsApi(id:number){
   console.log(id);
-  this.url = this.deleteSubCategoryDetails + "/" + id;
+  this.url = this.deleteSubCategoryDetails + "?" + "subCategoryId=" + id;
   console.log(this.url);
   return this._http.delete<SubCategory>(this.url).pipe(
    catchError(this.errorHandler)
@@ -130,6 +138,13 @@ public setNewStatusOnServer(orderDetails:Order): Observable<string>{
 public updateGroceryCategoryDetailsApi(category:GroceryCategoryModel){
   console.log(JSON.stringify(category));
   return  this._http.put(this.updateGroceryCategoryDetails,category).pipe(
+    catchError(this.errorHandler)
+  );
+}
+
+public updateGrocerySubCategoryDetailsApi(subCategory:SubCategory){
+  //console.log(JSON.stringify(category));
+  return  this._http.put(this.updateGrocerySubCategoryDetails,subCategory).pipe(
     catchError(this.errorHandler)
   );
 }

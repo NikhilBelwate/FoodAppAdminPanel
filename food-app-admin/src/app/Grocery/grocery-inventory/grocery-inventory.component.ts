@@ -26,7 +26,7 @@ export class GroceryInventoryComponent implements OnInit{
   id: number;
   public editFlag=false;
   public addFlag=false;
-  public category;
+  public category:GroceryCategoryModel;
   public categoryNameTemp:String;
   public categoryArray:any;
   dataSource = new MatTableDataSource();
@@ -111,7 +111,8 @@ deleteItem(i: number, categoryId: number, categoryName: string, categoryUrl: str
     data: {category:this.category}
   });
   dialogRef.afterClosed().subscribe(result => {
-    this.getCategoryDetails();
+    alert("hello");
+    this.dataSource.data = this.categoryService.categoryList.filter((x)=>x.GroceryCategoryId==this.category.GroceryCategoryId)
   });
 }
 

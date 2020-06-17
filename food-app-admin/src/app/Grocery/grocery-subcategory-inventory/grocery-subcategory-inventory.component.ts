@@ -38,7 +38,7 @@ export class GrocerySubcategoryInventoryComponent implements OnInit {
     )
   }
 
-  displayedColumns = ['SubCategoryId', 'SubCategoryName', 'categoryName','SubcategoryPrice','SubCategoryURL','SubCategoryDesc','LocationId','actions'];
+  displayedColumns = ['SubCategoryId', 'SubCategoryName', 'categoryName','SubcategoryPrice','SubCategoryURL','SubCategoryDesc','LocationId','SubCategoryTax','actions'];
 
   getSubCategoryDetails() {
     this.dataServiceApi.getGrocerySubCategoryDetailsApi().subscribe(
@@ -90,7 +90,7 @@ deleteItem(subCategory:SubCategory) {
     data: {subCategory:this.subCategory}
   });
   dialogRef.afterClosed().subscribe(result => {
-    this.getSubCategoryDetails();
+    this.subCategoryList = this.subCategoryList.filter((x)=>x.SubCategoryId!=this.subCategory.SubCategoryId);
   });
 }
 receiveMessage($event) {

@@ -18,7 +18,7 @@ export class DeleteGrocerySubcategoryInventoryComponent implements OnInit {
   }
   confirmDelete(): void {
     console.log(this.data);
-    this.dataServiceApi.deleteSubGroceryCategoryDetailsApi(this.data.subCategory.subCategoryId).subscribe(
+    this.dataServiceApi.deleteSubGroceryCategoryDetailsApi(this.data.subCategory.SubCategoryId).subscribe(
       data =>{
         
       },

@@ -5,7 +5,7 @@
   
       <!--<div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="SubCategory ID" [(ngModel)]="subCategory.subCategoryId" name="id" formControlName="subCategoryId" >
+          <input matInput #input class="form-control" placeholder="SubCategory ID" [(ngModel)]="subCategory.SubCategoryId" name="id" formControlName="subCategoryId" >
          
         </mat-form-field>
       </div>-->
@@ -24,8 +24,8 @@
         <mat-form-field color="accent" class="full-width">
             <mat-select placeholder="Category" formControlName="categoryName" >
                 <mat-option>--</mat-option>
-                <mat-option *ngFor="let category of categoryService.categoryList" [value]="category.categoryName">
-                    {{category.categoryName}}
+                <mat-option *ngFor="let category of categoryService.categoryList" [value]="category.CategoryName">
+                    {{category.CategoryName}}
                   </mat-option>
               </mat-select>
          
@@ -68,12 +68,12 @@
          
         </mat-form-field>
       </div>
-     <!-- <div class="form">
+      <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="SubCategory Tax rate" [(ngModel)]="subCategory.SubCategoryTax" name="title" formControlName="subCategoryTax" >
          
         </mat-form-field>
-      </div>-->
+      </div>
       <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="SubCategory Unit" [(ngModel)]="subCategory.Unit" name="title" formControlName="subCategoryUnit" >
