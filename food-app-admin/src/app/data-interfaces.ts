@@ -1,4 +1,5 @@
 import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
+import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
 
 export interface DeliveryDetails {
@@ -68,5 +69,13 @@ export interface DeliveryDetails {
     }
 
     export interface GrocerySubCategory {
+        items: SubCategory[];
+    }
+
+    export interface Dairycategory {
+        categoryList: DairyCategoryModel[];
+    }
+
+    export interface DairySubCategory {
         items: SubCategory[];
     }

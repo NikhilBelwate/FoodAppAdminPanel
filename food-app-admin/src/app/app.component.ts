@@ -18,6 +18,8 @@ export class AppComponent {
     }
     else if(inventoryName=='Food'){
       this.router.navigate(["/ordertable"]);
+    }else if(inventoryName=='Dairy'){
+      this.router.navigate(["/dairy"]);
     }
   }
 }

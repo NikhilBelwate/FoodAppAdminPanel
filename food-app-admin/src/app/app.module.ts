@@ -54,7 +54,15 @@ import { EditGrocerySubcategoryComponent } from './Grocery/edit-grocery-subcateg
 import { DeleteGrocerySubcategoryInventoryComponent } from './Grocery/delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { AddGrocerySubcategoryInventoryComponent } from './Grocery/add-grocery-subcategory-inventory/add-grocery-subcategory-inventory.component';
 import { GroceryRoutingModule } from './Grocery/grocery-routing.module';
+import { DairyRoutingModule } from './Dairy/dairy-routing.module';
+
 import { CustomHttpInterceptor } from './CustomHttpInterceptor';
+import { DairyInventoryComponent } from './Dairy/dairy-inventory/dairy-inventory.component';
+import { DairySubcategoryInventoryComponent } from './Dairy/dairy-subcategory-inventory/dairy-subcategory-inventory.component';
+import { AddDairyInventoryComponent } from './Dairy/add-dairy-inventory/add-dairy-inventory.component';
+import { AddDairySubcategoryInventoryComponent } from './Dairy/add-dairy-subcategory-inventory/add-dairy-subcategory-inventory.component';
+import { EditDairyInventoryComponent } from './Dairy/edit-dairy-inventory/edit-dairy-inventory.component';
+import { EditDairySubcategoryComponent } from './Dairy/edit-dairy-subcategory/edit-dairy-subcategory.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +75,13 @@ import { CustomHttpInterceptor } from './CustomHttpInterceptor';
     GrocerySubcategoryInventoryComponent,
     EditGrocerySubcategoryComponent,
     DeleteGrocerySubcategoryInventoryComponent,
-    AddGrocerySubcategoryInventoryComponent
+    AddGrocerySubcategoryInventoryComponent,
+    DairyInventoryComponent,
+    DairySubcategoryInventoryComponent,
+    AddDairyInventoryComponent,
+    AddDairySubcategoryInventoryComponent,
+    EditDairyInventoryComponent,
+    EditDairySubcategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +92,7 @@ import { CustomHttpInterceptor } from './CustomHttpInterceptor';
     ReactiveFormsModule,
     AppRoutingModule,
     GroceryRoutingModule,
+    DairyRoutingModule,
     MatAutocompleteModule,
         MatBadgeModule,
         MatButtonModule,
