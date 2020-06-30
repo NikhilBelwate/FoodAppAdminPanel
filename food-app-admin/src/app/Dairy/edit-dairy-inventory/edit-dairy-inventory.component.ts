@@ -30,7 +30,7 @@ export class EditDairyInventoryComponent implements OnInit {
      // console.warn(this.userProfileForm.value);
        this.dataServiceApi.updateDairyCategoryDetailsApi(this.category).subscribe(
         data =>{
-          //console.log(data);
+          console.log(data);
           alert("Category Records Updated Succesfully");
           this.editFlag = false;
           this.messageEvent.emit(this.editFlag);

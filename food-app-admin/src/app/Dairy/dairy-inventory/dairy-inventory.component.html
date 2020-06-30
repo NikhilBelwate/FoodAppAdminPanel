@@ -9,7 +9,7 @@
       </mat-drawer>
       <mat-drawer-content>
         <ng-container *ngIf="editFlag ;else addView">
-        <div><app-edit-dairy-subcategroy [category] = "category" (messageEvent)="receiveMessage($event)"></app-edit-dairy-subcategroy></div>
+        <div><app-edit-dairy-inventory [category] = "category" (messageEvent)="receiveMessage($event)"></app-edit-dairy-inventory></div>
       
     </ng-container>
       <ng-template #addView>
@@ -54,10 +54,10 @@
                 </button>
               </mat-header-cell>
               <mat-cell *matCellDef="let row; let i=index;">
-                <button mat-icon-button color="accent" (click)="startEdit(i, row.GroceryCategoryId, row.CategoryName, row.CategoryImage)">
+                <button mat-icon-button color="accent" (click)="startEdit(i, row.DairyCategoryId, row.CategoryName, row.CategoryImage)">
                   <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
-                <button mat-icon-button color="accent" (click)="deleteItem(i, row.GroceryCategoryId, row.CategoryName, row.CategoryImage)">
+                <button mat-icon-button color="accent" (click)="deleteItem(i, row.DairyCategoryId, row.CategoryName, row.CategoryImage)">
                   <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
                 </mat-cell>
