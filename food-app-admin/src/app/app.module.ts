@@ -63,6 +63,13 @@ import { AddDairyInventoryComponent } from './Dairy/add-dairy-inventory/add-dair
 import { AddDairySubcategoryInventoryComponent } from './Dairy/add-dairy-subcategory-inventory/add-dairy-subcategory-inventory.component';
 import { EditDairyInventoryComponent } from './Dairy/edit-dairy-inventory/edit-dairy-inventory.component';
 import { EditDairySubcategoryComponent } from './Dairy/edit-dairy-subcategory/edit-dairy-subcategory.component';
+import { FishmeatInventoryComponent } from './FishMeat/fishmeat-inventory/fishmeat-inventory.component';
+import { FishmeatSubcategoryInventoryComponent } from './FishMeat/fishmeat-subcategory-inventory/fishmeat-subcategory-inventory.component';
+import { AddFishmeatInventoryComponent } from './FishMeat/add-fishmeat-inventory/add-fishmeat-inventory.component';
+import { AddFishmeatSubcategoryInventoryComponent } from './FishMeat/add-fishmeat-subcategory-inventory/add-fishmeat-subcategory-inventory.component';
+import { EditFishmeatSubcategoryInventoryComponent } from './FishMeat/edit-fishmeat-subcategory-inventory/edit-fishmeat-subcategory-inventory.component';
+import { EditFishmeatInventoryComponent } from './FishMeat/edit-fishmeat-inventory/edit-fishmeat-inventory.component';
+import { FishMeatRoutingModule } from './FishMeat/fishmeat-routing-module';
 
 @NgModule({
   declarations: [
@@ -81,7 +88,13 @@ import { EditDairySubcategoryComponent } from './Dairy/edit-dairy-subcategory/ed
     AddDairyInventoryComponent,
     AddDairySubcategoryInventoryComponent,
     EditDairyInventoryComponent,
-    EditDairySubcategoryComponent
+    EditDairySubcategoryComponent,
+    FishmeatInventoryComponent,
+    FishmeatSubcategoryInventoryComponent,
+    AddFishmeatInventoryComponent,
+    AddFishmeatSubcategoryInventoryComponent,
+    EditFishmeatSubcategoryInventoryComponent,
+    EditFishmeatInventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +106,7 @@ import { EditDairySubcategoryComponent } from './Dairy/edit-dairy-subcategory/ed
     AppRoutingModule,
     GroceryRoutingModule,
     DairyRoutingModule,
+    FishMeatRoutingModule,
     MatAutocompleteModule,
         MatBadgeModule,
         MatButtonModule,

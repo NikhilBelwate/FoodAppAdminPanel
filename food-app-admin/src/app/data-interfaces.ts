@@ -79,3 +79,11 @@ export interface DeliveryDetails {
     export interface DairySubCategory {
         items: SubCategory[];
     }
+
+    export interface FishMeatcategory {
+        categoryList: FishMeatcategory[];
+    }
+
+    export interface FishMeatSubCategory {
+        items: SubCategory[];
+    }
