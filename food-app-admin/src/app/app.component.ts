@@ -21,5 +21,8 @@ export class AppComponent {
     }else if(inventoryName=='Dairy'){
       this.router.navigate(["/dairy"]);
     }
+    else if(inventoryName=='FishMeat'){
+      this.router.navigate(["/fishmeat"]);
+    }
   }
 }
