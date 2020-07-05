@@ -1,6 +1,7 @@
 import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
+import { FishMeatCategoryModel } from 'src/model/FishMeatCategoryModel';
 
 export interface DeliveryDetails {
         Address: string;
@@ -81,7 +82,7 @@ export interface DeliveryDetails {
     }
 
     export interface FishMeatcategory {
-        categoryList: FishMeatcategory[];
+        categoryList: FishMeatCategoryModel[];
     }
 
     export interface FishMeatSubCategory {

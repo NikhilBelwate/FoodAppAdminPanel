@@ -75,12 +75,12 @@ export class FishmeatInventoryComponent implements OnInit {
   showDetails(inventoryName){
     this.editFlag=false;
     this.addFlag=false;
-    if(inventoryName=='DairyCategory'){
-      this.router.navigate(["/dairy"]);
+    if(inventoryName=='FishMeatCategory'){
+      this.router.navigate(["/fishmeat"]);
     }
-    else if(inventoryName=='DairySubCategory'){
-      alert(inventoryName);
-      this.router.navigate(["/dairysubCategory"]);
+    else if(inventoryName=='FishMeatSubCategory'){
+      //alert(inventoryName);
+      this.router.navigate(["/fishmeatsubCategory"]);
     }
   }
 

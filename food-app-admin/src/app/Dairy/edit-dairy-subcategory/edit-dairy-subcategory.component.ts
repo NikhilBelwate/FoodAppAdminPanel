@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SubCategory } from 'src/model/SubCategory';
-import { Grocerycategory, Dairycategory } from 'src/app/data-interfaces';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DataApiService } from 'src/app/data-api.service';
+import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
+import { Dairycategory } from 'src/app/data-interfaces';
 
 @Component({
   selector: 'app-edit-dairy-subcategory',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EditDairySubcategoryComponent implements OnInit {
 
+  
   @Input() public subCategory:SubCategory;
   public categoryService:Dairycategory;
   public editFlag:boolean=false;

@@ -4,7 +4,7 @@ import { Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Data, Order, Records, Grocerycategory,DairySubCategory,Dairycategory, Roles, GrocerySubCategory, FishMeatcategory } from './data-interfaces';
+import { Data, Order, Records, Grocerycategory,DairySubCategory,Dairycategory, Roles, GrocerySubCategory, FishMeatcategory, FishMeatSubCategory } from './data-interfaces';
 import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
 import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
@@ -59,6 +59,8 @@ export class DataApiService {
 
   getSubDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/dairySubCategory.php";
 
+  getSubFishMeatCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/fishMeatSubCategory.php";
+
   saveGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocery.php";
 
   saveDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertDairy.php";
@@ -75,12 +77,15 @@ export class DataApiService {
 
   updateDairySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateDairySubCategory.php";
 
+  updateFishMeatSubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateFishMeatSubCategory.php";
+
   //saveGrocerySubCategoryDetails:string="http://localhost:8080/saveSubCategoryDetails";
 
   saveGrocerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocerySubcategory.php";
 
   saveDairySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertDairySubCategory.php";
 
+  saveFishMeatSubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertFishMeatSubCategory.php";
   //deleteCategoryDetails:string="http://localhost:8080/deleteCategoryDetails";
 
   deleteCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/deleteGroceryCategory.php";
@@ -153,6 +158,12 @@ public saveDairySubCategoryDetailsApi(subCategory:SubCategory){
     catchError(this.errorHandler)
   );
 }
+public saveFishMeatSubCategoryDetailsApi(subCategory:SubCategory){
+  console.log(JSON.stringify(subCategory));
+  return  this._http.post(this.saveFishMeatSubCategoryDetails,subCategory).pipe(
+    catchError(this.errorHandler)
+  );
+}
  public saveGroceryCategoryDetailsApi(category:GroceryCategoryModel){
   console.log(JSON.stringify(category));
   return  this._http.post(this.saveGroceryCategoryDetails,category).pipe(
@@ -205,6 +216,12 @@ public updateDairySubCategoryDetailsApi(subCategory:SubCategory){
     catchError(this.errorHandler)
   );
 }
+public updateFishMeatSubCategoryDetailsApi(subCategory:SubCategory){
+  //console.log(JSON.stringify(category));
+  return  this._http.put(this.updateFishMeatSubCategoryDetails,subCategory).pipe(
+    catchError(this.errorHandler)
+  );
+}
 
   public getGroceryCategoryDetailsApi():Observable<Grocerycategory>{
     
@@ -239,6 +256,11 @@ public updateDairySubCategoryDetailsApi(subCategory:SubCategory){
   }
   public getDairySubCategoryDetailsApi():Observable<DairySubCategory>{
     return this._http.get<DairySubCategory>(this.getSubDairyCategoryDetails).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+  public getFishMeatSubCategoryDetailsApi():Observable<FishMeatSubCategory>{
+    return this._http.get<FishMeatSubCategory>(this.getSubFishMeatCategoryDetails).pipe(
       catchError(this.errorHandler)
     );
   }

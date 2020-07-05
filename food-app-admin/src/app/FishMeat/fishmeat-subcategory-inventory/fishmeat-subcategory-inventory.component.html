@@ -1,1 +1,114 @@
-<p>fishmeat-subcategory-inventory works!</p>
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>Fish - Meat Section
+        <p><button mat-button (click) = "showDetails('FishMeatCategory')">Add/Update Fish-Meat Category </button></p>
+        <p><button mat-button (click) = "showDetails('FishMeatSubCategory')">Add/Update Fish-Meat Products</button></p>
+    </mat-drawer>
+    <mat-drawer-content>
+      <ng-container *ngIf="editFlag ;else addView">
+     <div><app-edit-fishmeat-subcategory-inventory [subCategory] = "subCategory" (messageEvent)="receiveMessage($event)"></app-edit-fishmeat-subcategory-inventory></div>
+  </ng-container>
+    <ng-template #addView>
+      <ng-container *ngIf="addFlag ;else loggedOut">
+      <div><app-add-fishmeat-subcategory-inventory [subCategory] = "subCategory" (messageEventAdd)="receiveMessageAdd($event)"></app-add-fishmeat-subcategory-inventory></div>
+    </ng-container>
+    </ng-template>
+     <ng-template #loggedOut> 
+      <div class="container mat-elevation-z8">
+      
+       
+          <mat-form-field floatPlaceholder="never" color="accent">
+            <input matInput #filter placeholder="Filter data">
+          </mat-form-field>
+       
+      
+          <mat-table #table [dataSource]="subCategoryList" matSort class="mat-cell">
+            <!--- ng update @angular/cli @angular/core
+          Note that these columns can be defined in any order.
+                 The actual rendered columns are set as a property on the row definition" -->
+           <!-- ID Column -->
+           <ng-container matColumnDef="SubCategoryId">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory ID</mat-header-cell>
+             <mat-cell *matCellDef="let row" >{{row.SubCategoryId}}</mat-cell>
+           </ng-container>
+       
+           <ng-container matColumnDef="SubCategoryName">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Name</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.SubCategoryName}}</mat-cell>
+           </ng-container>
+           <ng-container matColumnDef="categoryName">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+             <mat-cell *matCellDef="let row">{{row.CategoryName}}
+           </mat-cell>
+         </ng-container>
+ 
+           <ng-container matColumnDef="SubcategoryPrice">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Price</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.SubCategoryPrice}}</mat-cell>
+           </ng-container>
+       
+           <ng-container matColumnDef="SubCategoryURL">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory URL</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.SubCategoryUrl}}</mat-cell>
+           </ng-container>
+ 
+           
+           <ng-container matColumnDef="SubCategoryDesc">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Description</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.SubCategoryDesc}}</mat-cell>
+           </ng-container>
+       
+           <ng-container matColumnDef="LocationId">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>Location ID</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.LocationId}}</mat-cell>
+           </ng-container>
+ 
+           <ng-container matColumnDef="SubCategoryTax">
+             <mat-header-cell *matHeaderCellDef mat-sort-header>SubCategory Tax</mat-header-cell>
+             <mat-cell *matCellDef="let row"> {{row.SubCategoryTax}}</mat-cell>
+           </ng-container>
+           <ng-container matColumnDef="actions">
+             <mat-header-cell *matHeaderCellDef>
+               <button mat-icon-button color="accent" (click)="addNew()">
+                 <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+               </button>
+             </mat-header-cell>
+             <mat-cell *matCellDef="let row; let i=index;">
+               <button mat-icon-button color="accent" (click)="startEdit(row)">
+                 <mat-icon aria-label="Edit">edit</mat-icon>
+               </button>
+               <button mat-icon-button color="accent" (click)="deleteItem(row)">
+                 <mat-icon aria-label="Delete">delete</mat-icon>
+               </button>
+               </mat-cell>
+             </ng-container>
+       
+           <!-- actions -->
+            <!--<ng-container matColumnDef="actions">
+             <mat-header-cell *matHeaderCellDef>
+               <button mat-icon-button color="primary" (click)="addNew()">
+                 <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+               </button>
+             </mat-header-cell>
+       
+             <mat-cell *matCellDef="let row; let i=index;">
+               <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
+                 <mat-icon aria-label="Edit">edit</mat-icon>
+               </button>
+       
+               <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+                 <mat-icon aria-label="Delete">delete</mat-icon>
+               </button>
+             </mat-cell>
+           </ng-container>-->
+       
+           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+         </mat-table>
+       
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </ng-template>
+    </mat-drawer-content>
+  </mat-drawer-container>
