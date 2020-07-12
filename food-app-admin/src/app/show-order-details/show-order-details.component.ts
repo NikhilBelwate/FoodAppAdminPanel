@@ -15,9 +15,10 @@ import { Subscription } from 'rxjs';
 })
 export class ShowOrderDetailsComponent implements OnInit {
 
-  newStatus:string;
+  currentStatus:string;
   statusTestMsg:String;
   orderID:number;
+  adminMsg:String;
   orderInfo:Order;
   orderInfo1:Order;
   errormsg:string;
@@ -57,7 +58,7 @@ export class ShowOrderDetailsComponent implements OnInit {
         
       });*/
       alert(this.orderInfo.Token);
-      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'" }',this.orderInfo.Token);
+      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'","statusMsg":"Now your '+this.orderInfo.Status+'","adminMsg":"'+this.adminMsg+'" }',this.orderInfo.Token);
       this._dataApiService.setNewStatusOnServer(this.orderInfo).subscribe(
         data=>{
           alert(JSON.stringify(data));
@@ -74,7 +75,7 @@ export class ShowOrderDetailsComponent implements OnInit {
    this.stopSubs =  this._dataApiService.foodOrder$.subscribe(
       order => {
         this.orderInfo=order;
-        //this.newStatus = this.orderInfo1.Status
+        this.currentStatus = this.orderInfo.Status;
         console.log(this.orderInfo);
       },
       error=>{
@@ -84,6 +85,7 @@ export class ShowOrderDetailsComponent implements OnInit {
       this._dataApiService.getOrderDetails(this.orderID).subscribe(
         data=>{
           this.orderInfo1=data;
+          this.currentStatus = this.orderInfo1.Status;
         },
         error=>{
           this.errormsg=error.message;

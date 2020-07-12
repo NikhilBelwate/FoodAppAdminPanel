@@ -1,4 +1,4 @@
-<div>{{orderInfo | json}}</div>
+<!--<div>{{orderInfo | json}}</div>-->
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
@@ -112,7 +112,7 @@
   <div class="status">
     <mat-form-field >
       <mat-label>Current Status</mat-label>
-      <input matInput #input class="form-control" placeholder="Current Status"  name="title">
+      <input matInput #input class="form-control" [(ngModel)]="currentStatus" disabled="true" placeholder="Current Status"  name="title">
     </mat-form-field>
     <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
         <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
@@ -133,6 +133,12 @@
         </mat-select>
   </mat-form-field>
 </ng-template>
+
+<mat-form-field >
+  <mat-label>Admin message</mat-label>
+  <input matInput #input class="form-control" placeholder="Admin message" [(ngModel)]="adminMsg"  name="adminMsg">
+</mat-form-field>
+
       <button mat-raised-button color="warn" (click) = "updateStatus(orderInfo.OrderID,orderInfo.Token)">Update Status</button>
   </div>
 
