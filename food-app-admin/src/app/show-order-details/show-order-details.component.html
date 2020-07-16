@@ -1,4 +1,60 @@
 <!--<div>{{orderInfo | json}}</div>-->
+<mat-card style="background-color: brown;">
+<mat-tab-group>
+  <mat-tab label="Order From">
+    <mat-card>
+      {{orderInfo.USER_NAME}} | &nbsp;&nbsp;{{ orderInfo.USER_PHONE}}
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Order Status History">
+    <div *ngFor="let history of orderInfo.OrderStatusHistory">
+      <mat-card>
+      {{history.Old_status}} &nbsp; &nbsp; -> &nbsp; &nbsp; {{history.New_status}} 
+      &nbsp; &nbsp; @ &nbsp; {{history.Time * 1000 | date: 'yyyy/MM/dd h:mm:ss a'}}  
+      &nbsp; &nbsp; | &nbsp; {{history.admin_msg}}  
+      </mat-card>
+    </div>
+    
+  </mat-tab>
+</mat-tab-group>
+</mat-card>
+<br>
+<div class="status">
+  <mat-form-field >
+    <mat-label>Current Status</mat-label>
+    <input matInput #input class="form-control" [(ngModel)]="currentStatus" disabled="true" placeholder="Current Status"  name="title">
+  </mat-form-field>
+  <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
+      <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let statusData of foodStatus" [value]="statusData">
+            {{statusData}}
+            </mat-option>
+        </mat-select>
+        
+  </mat-form-field>
+  <ng-template #loggedOut>
+  <mat-form-field>
+    <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let statusData1 of otherStatus" [value]="statusData1">
+          {{statusData1}}
+          </mat-option>
+      </mat-select>
+</mat-form-field>
+</ng-template>
+
+<mat-form-field >
+<mat-label>Admin message</mat-label>
+<input matInput #input class="form-control" placeholder="Admin message" [(ngModel)]="adminMsg"  name="adminMsg">
+</mat-form-field>
+
+    <button mat-raised-button color="warn" (click) = "updateStatus(orderInfo.OrderID,orderInfo.Token)">Update Status</button>
+</div>
+  <mat-action-row>
+    <button mat-button color="primary" (click)="nextStep()">Next</button>
+  </mat-action-row>
+
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
@@ -10,35 +66,39 @@
         <mat-icon>account_circle</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <mat-card>
     <div class="form">
     <mat-form-field color="accent">
-      <input matInput #input class="form-control" placeholder="Address"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.Address">
+      <input matInput #input class="form-control" placeholder="Address"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.addressText">
     </mat-form-field>
   </div>
   <div class="form">
     <mat-form-field color="accent">
-      <input matInput #input class="form-control" placeholder="Email"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.email">
+      <input matInput #input class="form-control" placeholder="Email"  name="title"  [(ngModel)]="orderInfo.UserID">
     </mat-form-field>
   </div>
   <div class="form">
     <mat-form-field color="accent">
-      <input matInput #input class="form-control" placeholder="Full Name"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.fullName">
+      <input matInput #input class="form-control" placeholder="Full Name"  name="title"  [(ngModel)]="orderInfo.USER_NAME">
     </mat-form-field>
   </div>
   <div class="form">
     <mat-form-field color="accent">
-      <input matInput #input class="form-control" placeholder="Mobile No"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.mobileNo">
+      <input matInput #input class="form-control" placeholder="Mobile No"  name="title"  [(ngModel)]="orderInfo.USER_PHONE">
     </mat-form-field>
   </div>
+  <div class="form">
+    <mat-form-field color="accent">
+      <input matInput #input class="form-control" placeholder="Other No"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.deliveryContact">
+    </mat-form-field>
+  </div>
+
   <div class="form">
     <mat-form-field color="accent">
       <input matInput #input class="form-control" placeholder="PinCode"  name="title"  [(ngModel)]="orderInfo.DeliveryDetails.pinCode">
     </mat-form-field>
   </div>
-
-    <mat-action-row>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
-    </mat-action-row>
+</mat-card>
   </mat-expansion-panel>
 
   <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
@@ -90,16 +150,16 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <div *ngFor="let foodList of orderInfo.OrderDetails.foodList">
+    <div *ngFor="let itemList of orderInfo.OrderDetails.itemList">
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Food Name"  name="title"  [(ngModel)]="foodList.foodName">
+        <input matInput #input class="form-control" placeholder="Food Name"  name="title"  [(ngModel)]="itemList.SubCategoryName">
       </mat-form-field>
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Food Price"  name="title"  [(ngModel)]="foodList.foodPrice">
+        <input matInput #input class="form-control" placeholder="Food Price"  name="title"  [(ngModel)]="itemList.SubCategoryPrice">
       </mat-form-field>
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Food Quantity"  name="title"  [(ngModel)]="foodList.qty">
+        <input matInput #input class="form-control" placeholder="Food Quantity"  name="title"  [(ngModel)]="itemList.qty">
       </mat-form-field>
   </div>
   </div>
@@ -109,38 +169,7 @@
     </mat-action-row>
   </mat-expansion-panel>
   <br/>
-  <div class="status">
-    <mat-form-field >
-      <mat-label>Current Status</mat-label>
-      <input matInput #input class="form-control" [(ngModel)]="currentStatus" disabled="true" placeholder="Current Status"  name="title">
-    </mat-form-field>
-    <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
-        <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let statusData of foodStatus" [value]="statusData">
-              {{statusData}}
-              </mat-option>
-          </mat-select>
-          
-    </mat-form-field>
-    <ng-template #loggedOut>
-    <mat-form-field>
-      <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
-          <mat-option>--</mat-option>
-          <mat-option *ngFor="let statusData1 of otherStatus" [value]="statusData1">
-            {{statusData1}}
-            </mat-option>
-        </mat-select>
-  </mat-form-field>
-</ng-template>
-
-<mat-form-field >
-  <mat-label>Admin message</mat-label>
-  <input matInput #input class="form-control" placeholder="Admin message" [(ngModel)]="adminMsg"  name="adminMsg">
-</mat-form-field>
-
-      <button mat-raised-button color="warn" (click) = "updateStatus(orderInfo.OrderID,orderInfo.Token)">Update Status</button>
-  </div>
+  
 
 </mat-accordion>
 

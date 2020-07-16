@@ -71,8 +71,8 @@ export class ShowOrderDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    //this.orderID= parseInt(this.route.snapshot.paramMap.get("orderID"));
-   this.stopSubs =  this._dataApiService.foodOrder$.subscribe(
+    this.orderID= parseInt(this.route.snapshot.paramMap.get("orderID"));
+   /*this.stopSubs =  this._dataApiService.foodOrder$.subscribe(
       order => {
         this.orderInfo=order;
         this.currentStatus = this.orderInfo.Status;
@@ -81,14 +81,17 @@ export class ShowOrderDetailsComponent implements OnInit {
       error=>{
         this.errormsg=error.message;
       }
-    );
+    );*/
       this._dataApiService.getOrderDetails(this.orderID).subscribe(
         data=>{
-          this.orderInfo1=data;
-          this.currentStatus = this.orderInfo1.Status;
+          this.orderInfo=data;
+          alert(JSON.stringify(this.orderInfo));
+          this.currentStatus = this.orderInfo.Status;
         },
         error=>{
           this.errormsg=error.message;
+          console.log(error.message);
+          alert(error.message);
         }
       );
     
