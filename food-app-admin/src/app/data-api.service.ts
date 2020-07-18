@@ -37,8 +37,8 @@ export class DataApiService {
   getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
   //getOrdersListUrl:string="http://www.json-generator.com/api/json/get/bQZMmVNZVe?indent=2"
 
-  //getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
-  getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
+  getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
+  //getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
   
   //getStatusRecordsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
   getStatusRecordsUrl:string="http://www.mocky.io/v2/5e871a4231000011d88185de?orderID=";

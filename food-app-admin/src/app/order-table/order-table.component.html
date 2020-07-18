@@ -30,12 +30,12 @@
     
     <ng-container matColumnDef="mobileNo">
       <mat-header-cell *matHeaderCellDef> mobile No </mat-header-cell>
-       <mat-cell *matCellDef="let element"> {{element.DeliveryDetails.mobileNo }} </mat-cell>
+       <mat-cell *matCellDef="let element"> {{element.USER_PHONE }} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="DeliveryDetails">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
-       <mat-cell *matCellDef="let element"> {{element.DeliveryDetails.Address }} </mat-cell>
+       <mat-cell *matCellDef="let element"> {{element.DeliveryDetails | json }} </mat-cell>
     </ng-container>
   
     <!-- Symbol Column -->
