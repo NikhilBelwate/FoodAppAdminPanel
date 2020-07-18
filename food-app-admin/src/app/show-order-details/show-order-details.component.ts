@@ -57,7 +57,7 @@ export class ShowOrderDetailsComponent implements OnInit {
         
       });*/
       alert(this.orderInfo.Token);
-      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'" }',this.orderInfo.Token);
+      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"statusMsg":"'+this.orderInfo.Status+'","adminMsg":"This is message from the admin" }',this.orderInfo.Token);
       this._dataApiService.setNewStatusOnServer(this.orderInfo).subscribe(
         data=>{
           alert(JSON.stringify(data));
