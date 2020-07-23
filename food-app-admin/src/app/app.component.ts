@@ -9,10 +9,25 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'food-app-admin';
 
+  loginStatus:string="Logout";
+
   constructor(private router : Router){
 
   }
+
+  logout(){
+    if(this.loginStatus==="Login"){
+        this.loginStatus="Logout";
+    }else{
+      this.loginStatus="Login";
+    }
+    this.router.navigate(["/"]);
+  }
+  showOrders(){
+    this.router.navigate(["/ordertable"]);
+  }
   showDetails(inventoryName){
+    this.loginStatus="Logout";
     if(inventoryName=='Grocery'){
       this.router.navigate(["/grocery"]);
     }

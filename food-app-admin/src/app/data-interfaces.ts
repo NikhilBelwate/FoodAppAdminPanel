@@ -144,7 +144,7 @@ export interface DeliveryDetails {
     }
 
     export interface Order {
-        OrderID: string;
+        OrderID: number;
         UserID: string;
         HotelID: number;
         DeliveryDetails: DeliveryDetails;
@@ -165,4 +165,10 @@ export interface DeliveryDetails {
         USER_STATUS: string;
         Token: string;
         OrderStatusHistory: OrderStatusHistory[];
+    }
+    export class OrderUpdate {
+        public OrderID: number;
+        public Status: string;
+        public Time:number;
+        public AdminMsg: string;        
     }

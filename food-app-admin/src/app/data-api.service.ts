@@ -4,7 +4,7 @@ import { Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { Data, Order, Records, Grocerycategory,DairySubCategory,Dairycategory, Roles, GrocerySubCategory, FishMeatcategory, FishMeatSubCategory } from './data-interfaces';
+import { Data, Order, Records, Grocerycategory,DairySubCategory,Dairycategory, Roles, GrocerySubCategory, FishMeatcategory, FishMeatSubCategory, OrderUpdate } from './data-interfaces';
 import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
 import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
@@ -44,8 +44,8 @@ export class DataApiService {
   getStatusRecordsUrl:string="http://www.mocky.io/v2/5e871a4231000011d88185de?orderID=";
 
 
-  //submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
-  submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
+  submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
+  //submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
 
   //getGroceryCategoryDetails:string="http://localhost:8080/authenticate";
 
@@ -103,9 +103,14 @@ export class DataApiService {
    }
 
 //HTTP POST
-public setNewStatusOnServer(orderDetails:Order): Observable<string>{
-
-  return this._http.post<string>(this.updateAdminStatusUrl,orderDetails).pipe(
+public setNewStatusOnServer(orderDetails:OrderUpdate): Observable<any>{
+  console.log(JSON.stringify(orderDetails));
+  alert(JSON.stringify(orderDetails));
+  this.httpOptions.headers =this.httpOptions.headers.set('Access-Control-Allow-Origin', '*');
+  //this.httpOptions.headers =this.httpOptions.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+  //this.httpOptions.headers =this.httpOptions.headers.set('Content-Type', 'application/json');
+  
+  return this._http.post(this.submitStatusChangeUrl,orderDetails,this.httpOptions).pipe(
     catchError(this.errorHandler)
   );//catch(this.errorHandler);
 

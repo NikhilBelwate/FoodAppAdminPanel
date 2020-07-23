@@ -4,6 +4,7 @@ import { Data, Order } from '../data-interfaces';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-order-table',
@@ -18,6 +19,7 @@ export class OrderTableComponent implements OnInit {
   public foodOrderData:Order;
 
   @ViewChild(MatSort) sort:MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator;
   
   errormsg:string;
   constructor(private _dataApiService:DataApiService, private router: Router) { }
@@ -29,6 +31,7 @@ export class OrderTableComponent implements OnInit {
           this.orderList=new MatTableDataSource(this.ordersData.orders);
           //For sorting of table data
           this.orderList.sort= this.sort;
+          this.orderList.paginator=this.paginator;
       },
       error => {
         this.errormsg=error.message;

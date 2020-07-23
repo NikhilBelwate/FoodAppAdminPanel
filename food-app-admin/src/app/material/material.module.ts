@@ -71,6 +71,7 @@ const MaterialComponents=[
   MatTooltipModule,
   MatTreeModule,
   MatNativeDateModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

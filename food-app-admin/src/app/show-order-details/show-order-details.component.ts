@@ -1,7 +1,7 @@
 import { ActivatedRoute} from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { DataApiService } from '../data-api.service';
-import { Order, Records, Record } from '../data-interfaces';
+import { Order, Records, Record, OrderUpdate } from '../data-interfaces';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,6 +18,7 @@ export class ShowOrderDetailsComponent implements OnInit {
   currentStatus:string;
   statusTestMsg:String;
   orderID:number;
+  orderUpdate:OrderUpdate;
   adminMsg:String;
   orderInfo:Order;
   orderInfo1:Order;
@@ -57,11 +58,17 @@ export class ShowOrderDetailsComponent implements OnInit {
       /*const dialogRef = this.dialog.open(DeleteGroceryCategoryInventoryComponent, {
         
       });*/
-      alert(this.orderInfo.Token);
-      this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'","statusMsg":"Now your '+this.orderInfo.Status+'","adminMsg":"'+this.adminMsg+'" }',this.orderInfo.Token);
-      this._dataApiService.setNewStatusOnServer(this.orderInfo).subscribe(
+      //alert(this.orderInfo.Token);
+      this.orderUpdate=new OrderUpdate();
+      this.orderUpdate.OrderID=this.orderInfo.OrderID;
+      this.orderUpdate.Status=this.orderInfo.Status.toString();
+      this.orderUpdate.AdminMsg=this.adminMsg.toString();
+      this.orderUpdate.Time=new Date().getTime();
+      this._dataApiService.setNewStatusOnServer(this.orderUpdate).subscribe(
         data=>{
           alert(JSON.stringify(data));
+          this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'","statusMsg":"Now your '+this.orderInfo.Status+'","adminMsg":"'+this.adminMsg+'" }',this.orderInfo.Token);
+      
         },
         error=>{
           this.errormsg=error.message;
