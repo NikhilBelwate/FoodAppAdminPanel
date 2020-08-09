@@ -1,7 +1,5 @@
-<mat-toolbar color="primary">
-  <span>Angular 8 MatTable CRUD Example</span>
-  <span class="spacer"></span>
-</mat-toolbar>
+<app-header></app-header>
+<!--<span class="spacer"></span>-->
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened>Grocery
         <p><button mat-button (click) = "showDetails('Grocery')">Add/Update Grocery Category </button></p>
@@ -21,9 +19,11 @@
       <div class="container mat-elevation-z8">
       
        
+        <div class="form">
           <mat-form-field floatPlaceholder="never" color="accent">
-            <input matInput #filter placeholder="Filter data">
+            <input matInput #filter placeholder="Filter data" (keyup)="sendit($event.target.value)">
           </mat-form-field>
+        </div>
        
       
         <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">

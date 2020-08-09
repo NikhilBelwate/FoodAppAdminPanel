@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataApiService } from '../../data-api.service';
 import { SubCategory } from 'src/model/SubCategory';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 //import { DeleteGrocerySubcategoryInventoryComponent } from '../delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDairySubcategoryComponent } from '../edit-dairy-subcategory/edit-dairy-subcategory.component';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -25,6 +27,9 @@ export class DairySubcategoryInventoryComponent implements OnInit {
   public subCategory:SubCategory;
   public editFlag=false;
   public addFlag=false;
+  public dataSource;
+  @ViewChild(MatSort) sort:MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator;
   constructor(private dataServiceApi:DataApiService,private router : Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -49,6 +54,8 @@ export class DairySubcategoryInventoryComponent implements OnInit {
       data =>{
         console.log(data);
         this.subCategoryList=data.items;
+        this.dataSource=new MatTableDataSource(data.items);
+        this.dataSource.paginator = this.paginator;
         this.filterSubCategoryList = this.subCategoryList;
         // Getting the name of the category from the category Id and mapping it in the Sub Category List
         this.subCategoryList.map(x=>{
@@ -81,7 +88,7 @@ export class DairySubcategoryInventoryComponent implements OnInit {
 
 sendit(data){
     data = data.toLowerCase();
-    this.subCategoryList = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
+    this.dataSource = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
     const objData = (subCat.SubCategoryName+subCat.SubCategoryPrice+subCat.SubCategoryUrl+subCat.Unit+subCat.CategoryName+subCat.SubCategoryDesc+subCat.LocationId+subCat.SubCategoryPrice+subCat.SubCategoryId).toLowerCase();
     return objData.includes(data);
    });

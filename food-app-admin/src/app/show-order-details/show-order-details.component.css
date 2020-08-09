@@ -14,10 +14,33 @@
   }
 
   .status {
-    background-color: gray;
+    background-color:#424242;
     margin-bottom: 20px;
   }
 
   .status.mat-form-field {
     margin-left: 50px;
+  }
+
+  .my-form{
+    width: 100%;
+  }
+   
+  .full-width {
+    width: 100%;
+  }
+  .loginHeader{
+      background-color: grey;
+      color: darkgreen;
+  }
+  mat-card {
+    margin: 2em auto;
+    text-align: left;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }

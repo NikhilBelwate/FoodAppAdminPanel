@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataApiService } from '../../data-api.service';
 import { SubCategory } from 'src/model/SubCategory';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { Grocerycategory, GrocerySubCategory } from '../../data-interfaces';
 import { Router } from '@angular/router';
 import { DeleteGrocerySubcategoryInventoryComponent } from '../delete-grocery-subcategory-inventory/delete-grocery-subcategory-inventory.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-grocery-subcategory-inventory',
@@ -15,12 +17,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class GrocerySubcategoryInventoryComponent implements OnInit {
 
-  subCategoryList:SubCategory[];
+  public subCategoryList:SubCategory[];
+  public dataSource;
   filterSubCategoryList:SubCategory[];
   public categoryService:Grocerycategory;
   public subCategory:SubCategory;
   public editFlag=false;
   public addFlag=false;
+  @ViewChild(MatSort) sort:MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator;
   constructor(private dataServiceApi:DataApiService,private router : Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -44,16 +49,15 @@ export class GrocerySubcategoryInventoryComponent implements OnInit {
     this.dataServiceApi.getGrocerySubCategoryDetailsApi().subscribe(
       data =>{
         console.log(data);
-        this.subCategoryList=data.items;
+        this.subCategoryList = data.items;
+        this.dataSource=new MatTableDataSource(data.items);
+        this.dataSource.paginator = this.paginator;
         this.filterSubCategoryList = this.subCategoryList;
         // Getting the name of the category from the category Id and mapping it in the Sub Category List
         this.subCategoryList.map(x=>{
           x.CategoryName=this.categoryService.categoryList.find(y=>y.GroceryCategoryId===x.CategoryId).CategoryName
         });
-       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.GroceryCategoryId===x.CategoryId))
-       
-        const matTable =  new MatTableDataSource(this.subCategoryList);
-        
+       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.GroceryCategoryId===x.CategoryId));
         //this.dataServiceApi.dataChange.value.push(this.categoryArray);
         console.log(this.dataServiceApi.dataChange.value.length);
       },
@@ -77,7 +81,7 @@ export class GrocerySubcategoryInventoryComponent implements OnInit {
 
 sendit(data){
     data = data.toLowerCase();
-    this.subCategoryList = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
+    this.dataSource = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
     const objData = (subCat.SubCategoryName+subCat.SubCategoryPrice+subCat.SubCategoryUrl+subCat.Unit+subCat.CategoryName+subCat.SubCategoryDesc+subCat.LocationId+subCat.SubCategoryPrice+subCat.SubCategoryId).toLowerCase();
     return objData.includes(data);
    });

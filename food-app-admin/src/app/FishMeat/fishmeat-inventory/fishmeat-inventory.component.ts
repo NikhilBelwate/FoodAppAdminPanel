@@ -26,10 +26,10 @@ export class FishmeatInventoryComponent implements OnInit {
   public category:FishMeatCategoryModel;
   public categoryNameTemp:String;
   public categoryArray:any;
-  dataSource = new MatTableDataSource();
+  public dataSource;
 //  @ViewChild(EditgroceryinventoryComponent) editGroceryComponentChild;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
   
   constructor(private router : Router,private dataServiceApi:DataApiService, public dialog: MatDialog) { 
 
@@ -44,7 +44,7 @@ export class FishmeatInventoryComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
+    
   }
   getCategoryDetails() {
     this.dataServiceApi.getFishMeatCategoryDetailsApi().subscribe(
@@ -53,7 +53,8 @@ export class FishmeatInventoryComponent implements OnInit {
         this.categoryService=data;
         this.categoryArray = this.categoryService.categoryList;
         this.categoryList = this.categoryService.categoryList;
-        this.dataSource.data = this.categoryList;
+        this.dataSource=new MatTableDataSource(this.categoryService.categoryList);
+        this.dataSource.paginator = this.paginator;
         this.dataServiceApi.dataChange.value.push(this.categoryArray);
         console.log(this.dataServiceApi.dataChange.value.length);
       },

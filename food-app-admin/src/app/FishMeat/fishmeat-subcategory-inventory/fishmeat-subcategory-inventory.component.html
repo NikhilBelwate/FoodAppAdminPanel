@@ -1,4 +1,4 @@
-
+  <app-header></app-header>
   <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened>Fish - Meat Section
         <p><button mat-button (click) = "showDetails('FishMeatCategory')">Add/Update Fish-Meat Category </button></p>
@@ -22,7 +22,7 @@
           </mat-form-field>
        
       
-          <mat-table #table [dataSource]="subCategoryList" matSort class="mat-cell">
+          <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
             <!--- ng update @angular/cli @angular/core
           Note that these columns can be defined in any order.
                  The actual rendered columns are set as a property on the row definition" -->

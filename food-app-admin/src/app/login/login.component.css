@@ -12,7 +12,7 @@
       color: darkgreen;
   }
   mat-card {
-    max-width: 400px;
+    max-width: 500px;
     margin: 2em auto;
     text-align: center;
   }

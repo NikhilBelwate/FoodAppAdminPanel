@@ -1,5 +1,6 @@
 <!--<div>{{orderInfo | json}}</div>-->
-<mat-card style="background-color: brown;">
+<mat-card style="background-color: #424242;">
+  <h2 style="font-family: bold; color: white;">Admin Message Details</h2>
 <mat-tab-group>
   <mat-tab label="Order From">
     <mat-card>
@@ -18,11 +19,13 @@
   </mat-tab>
 </mat-tab-group>
 </mat-card>
-<br>
-<div class="status">
-  <mat-form-field >
+<mat-card>
+  <h2 style="font-family: bold; color: white;">Admin Status update</h2>
+  <mat-card-content>
+    <form class="my-form" >
+    <mat-form-field class="full-width">
     <mat-label>Current Status</mat-label>
-    <input matInput #input class="form-control" [(ngModel)]="currentStatus" disabled="true" placeholder="Current Status"  name="title">
+    <input matInput #input style="font-family: bold; color: white;" class="form-control" [(ngModel)]="currentStatus" disabled="true" placeholder="Current Status"  name="title" >
   </mat-form-field>
   <mat-form-field *ngIf="orderInfo.HotelID==1; else loggedOut">
       <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
@@ -34,7 +37,7 @@
         
   </mat-form-field>
   <ng-template #loggedOut>
-  <mat-form-field>
+    <mat-form-field class="full-width">
     <mat-select placeholder="Select New Status" [(value)]="orderInfo.Status">
         <mat-option>--</mat-option>
         <mat-option *ngFor="let statusData1 of otherStatus" [value]="statusData1">
@@ -43,18 +46,22 @@
       </mat-select>
 </mat-form-field>
 </ng-template>
-
-<mat-form-field >
+<mat-form-field class="full-width">
 <mat-label>Admin message</mat-label>
-<input matInput #input class="form-control" placeholder="Admin message" [(ngModel)]="adminMsg"  name="adminMsg">
+<textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            #input class="form-control" placeholder="Admin message" [(ngModel)]="adminMsg"  name="adminMsg"></textarea>
 </mat-form-field>
 
     <button mat-raised-button color="warn" (click) = "updateStatus(orderInfo.OrderID,orderInfo.Token)">Update Status</button>
-</div>
-  <mat-action-row>
-    <button mat-button color="primary" (click)="nextStep()">Next</button>
-  </mat-action-row>
-
+  </form>
+  </mat-card-content>
+  </mat-card>
+  <mat-card >
+    <h2 style="font-family: bold; color: white;">Other Order Details</h2>
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
@@ -172,6 +179,12 @@
   
 
 </mat-accordion>
+<mat-action-row>
+  <button mat-button color="warn" (click)="nextStep()">Next</button>
+</mat-action-row>
+
+</mat-card>
+
 
 
 <!-- Copyright 2019 Google LLC. All Rights Reserved.

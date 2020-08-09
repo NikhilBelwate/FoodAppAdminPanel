@@ -29,10 +29,10 @@ export class GroceryInventoryComponent implements OnInit{
   public category:GroceryCategoryModel;
   public categoryNameTemp:String;
   public categoryArray:any;
-  dataSource = new MatTableDataSource();
+  public dataSource;
   @ViewChild(EditgroceryinventoryComponent) editGroceryComponentChild;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort) sort:MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator;
   
   constructor(private router : Router,private dataServiceApi:DataApiService, public dialog: MatDialog) { 
 
@@ -46,18 +46,15 @@ export class GroceryInventoryComponent implements OnInit{
     this.getCategoryDetails();
   }
 
-  ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
-  }
   getCategoryDetails() {
     this.dataServiceApi.getGroceryCategoryDetailsApi().subscribe(
       data =>{
         console.log(data);
         this.categoryService=data;
-        this.categoryArray = this.categoryService.categoryList;
+        this.dataSource=new MatTableDataSource(this.categoryService.categoryList);
         this.categoryList = this.categoryService.categoryList;
-        this.dataSource.data = this.categoryList;
         this.dataServiceApi.dataChange.value.push(this.categoryArray);
+        this.dataSource.paginator = this.paginator;
         console.log(this.dataServiceApi.dataChange.value.length);
       },
       error => {
@@ -86,6 +83,13 @@ export class GroceryInventoryComponent implements OnInit{
       this.router.navigate(["/subCategory"]);
     }
   }
+  sendit(data){
+    data = data.toLowerCase();
+    this.dataSource = this.categoryList.filter((cat:GroceryCategoryModel)=>{
+    const objData = (cat.CategoryName+cat.GroceryCategoryId+cat.ShopId+cat.Type).toLowerCase();
+    return objData.includes(data);
+   });
+}
 
   addNew() {
     this.category = new GroceryCategoryModel(0,"","");

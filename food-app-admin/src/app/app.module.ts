@@ -35,6 +35,7 @@ import { AddFishmeatSubcategoryInventoryComponent } from './FishMeat/add-fishmea
 import { EditFishmeatSubcategoryInventoryComponent } from './FishMeat/edit-fishmeat-subcategory-inventory/edit-fishmeat-subcategory-inventory.component';
 import { EditFishmeatInventoryComponent } from './FishMeat/edit-fishmeat-inventory/edit-fishmeat-inventory.component';
 import { FishMeatRoutingModule } from './FishMeat/fishmeat-routing-module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FishMeatRoutingModule } from './FishMeat/fishmeat-routing-module';
     AddFishmeatInventoryComponent,
     AddFishmeatSubcategoryInventoryComponent,
     EditFishmeatSubcategoryInventoryComponent,
-    EditFishmeatInventoryComponent
+    EditFishmeatInventoryComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
