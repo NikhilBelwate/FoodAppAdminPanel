@@ -26,8 +26,8 @@ export class ShowOrderDetailsComponent implements OnInit {
   statusRecord:Record[];
   options: FormGroup;
   colorControl = new FormControl('primary');
-  foodStatus = ["Order has been Placed","Order Confirmed","Food Out for delivery","Order Cancelled by the Hotel"];
-  otherStatus = ["Order has been Placed","Order Out for delivery","Order Cancelled"];
+  foodStatus = ["Order accepted","Order preparing","Order Out for delivery","Order delivered","Order Cancelled by the Hotel","Order Cancelled by the Admin"];
+  otherStatus = ["Order has been Placed","Order accepted","Order in process","Order Out for delivery","Order delivered","Order Cancelled"];
   url;
   private stopSubs:Subscription;
   @Input() public foodOrderData:Order;
