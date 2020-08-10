@@ -17,6 +17,7 @@ export class OrderTableComponent implements OnInit {
   public ordersData:Data;
   public orderList;
   public foodOrderData:Order;
+  public dataSource;
 
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
@@ -28,10 +29,11 @@ export class OrderTableComponent implements OnInit {
     this._dataApiService.getOrdersListData().subscribe(
       data => {
           this.ordersData=data;
-          this.orderList=new MatTableDataSource(this.ordersData.orders);
+          this.orderList=this.ordersData.orders;
+          this.dataSource=new MatTableDataSource(this.ordersData.orders);
           //For sorting of table data
-          this.orderList.sort= this.sort;
-          this.orderList.paginator=this.paginator;
+          this.dataSource.sort= this.sort;
+          this.dataSource.paginator=this.paginator;
       },
       error => {
         this.errormsg=error.message;
@@ -49,19 +51,26 @@ export class OrderTableComponent implements OnInit {
     this.router.navigate(["/details",row.OrderID]);
   }
 
-  applyFilter(searchdata:string){
-
-
-    this.orderList.filterPredicate = function(data, filter: string): boolean {
-      if(JSON.stringify(data).toLowerCase().includes(filter)||data.DeliveryDetails.mobileNo.toLowerCase().includes(filter) || data.DeliveryDetails.Address.toLowerCase().includes(filter) ){
-        return true;
-      }else{
-
-        return false;
-      }
-    }
-    this.orderList.filter=searchdata.trim().toLowerCase();
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
+// First Approach of Filtering
 
+ /* sendit(data){
+    data = data.toLowerCase();
+    this.dataSource = this.orderList.filter((order:Order)=>{
+    const objData = (order.OrderID+order.UserID+order.HotelID+order.USER_PHONE+order.DeliveryDetails+order.Total_price+order.Status).toLowerCase();
+    return objData.includes(data);
+   });
+}*/
+
+// Second Approach of Filtering
+sendit(data){
+  data = data.trim(); // Remove whitespace
+  data = data.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = data;
+}
   
 }

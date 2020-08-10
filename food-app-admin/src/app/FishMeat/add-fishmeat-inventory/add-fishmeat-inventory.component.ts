@@ -3,6 +3,7 @@ import { FishMeatCategoryModel } from 'src/model/FishMeatCategoryModel';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from 'src/app/data-api.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-add-fishmeat-inventory',
@@ -13,6 +14,7 @@ export class AddFishmeatInventoryComponent implements OnInit {
 
   @Input() public category:FishMeatCategoryModel;
   public addFlag:boolean=false;
+  public isValidLogin;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) {
 
   }
@@ -42,6 +44,7 @@ export class AddFishmeatInventoryComponent implements OnInit {
  
   ngOnInit(): void {
     console.log(this.category);
+    this.isValidLogin = LoginComponent.validLogin;
   }
 
 

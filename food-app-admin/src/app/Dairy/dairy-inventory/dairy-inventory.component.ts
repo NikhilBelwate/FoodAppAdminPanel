@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { findIndex } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginComponent } from 'src/app/login/login.component';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class DairyInventoryComponent implements OnInit {
   public categoryNameTemp:String;
   public categoryArray:any;
   dataSource = new MatTableDataSource();
+  public isValidLogin;
 //  @ViewChild(EditgroceryinventoryComponent) editGroceryComponentChild;
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
@@ -42,6 +44,7 @@ export class DairyInventoryComponent implements OnInit {
     this.editFlag=false;
     this.addFlag=false;
     this.getCategoryDetails();
+    this.isValidLogin = LoginComponent.validLogin;
   }
 
   ngAfterViewInit(){
@@ -74,6 +77,20 @@ export class DairyInventoryComponent implements OnInit {
     this.getCategoryDetails();
   }
 
+  /* sendit(data){
+    data = data.toLowerCase();
+    this.dataSource = this.orderList.filter((order:Order)=>{
+    const objData = (order.OrderID+order.UserID+order.HotelID+order.USER_PHONE+order.DeliveryDetails+order.Total_price+order.Status).toLowerCase();
+    return objData.includes(data);
+   });
+}*/
+
+// Second Approach of Filtering
+sendit(data){
+  data = data.trim(); // Remove whitespace
+  data = data.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = data;
+}
   showDetails(inventoryName){
     this.editFlag=false;
     this.addFlag=false;

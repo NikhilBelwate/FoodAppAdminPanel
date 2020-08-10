@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,9 @@ export class HeaderComponent implements OnInit {
 
   loginStatus:string="Logout";
 
+  isValidLogin;
+
+  selectedTab = "showOrders";
   constructor(private router : Router){
 
   }
@@ -21,6 +25,7 @@ export class HeaderComponent implements OnInit {
   logout(){
     if(this.loginStatus==="Login"){
         this.loginStatus="Logout";
+        this.isValidLogin = LoginComponent.validLogin;
     }else{
       this.loginStatus="Login";
     }
@@ -32,6 +37,7 @@ export class HeaderComponent implements OnInit {
   showDetails(inventoryName){
     this.loginStatus="Logout";
     if(inventoryName=='Grocery'){
+      this.selectedTab = inventoryName;
       this.router.navigate(["/grocery"]);
     }
     else if(inventoryName=='Food'){

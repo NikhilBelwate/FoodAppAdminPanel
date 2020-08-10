@@ -4,6 +4,7 @@ import { FishMeatcategory } from 'src/app/data-interfaces';
 import { SubCategory } from 'src/model/SubCategory';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class EditFishmeatSubcategoryInventoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:FishMeatcategory;
   public editFlag:boolean=false;
+  public isValidLogin;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
   editSubcategoryProfileForm = this.fb.group({
@@ -36,6 +38,7 @@ export class EditFishmeatSubcategoryInventoryComponent implements OnInit {
     this.getCategoryList();
     // set the value of dropdown
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
+    this.isValidLogin = LoginComponent.validLogin;
   }
 
   getCategoryList() {

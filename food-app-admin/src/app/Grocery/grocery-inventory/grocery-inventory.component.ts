@@ -10,6 +10,7 @@ import { DeleteGroceryCategoryInventoryComponent } from '../delete-grocery-categ
 import { findIndex } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginComponent } from 'src/app/login/login.component';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class GroceryInventoryComponent implements OnInit{
   public categoryNameTemp:String;
   public categoryArray:any;
   public dataSource;
+  public isValidLogin;
   @ViewChild(EditgroceryinventoryComponent) editGroceryComponentChild;
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
@@ -44,6 +46,8 @@ export class GroceryInventoryComponent implements OnInit{
     this.editFlag=false;
     this.addFlag=false;
     this.getCategoryDetails();
+    this.isValidLogin = LoginComponent.validLogin;
+    alert(this.isValidLogin);
   }
 
   getCategoryDetails() {
@@ -83,12 +87,19 @@ export class GroceryInventoryComponent implements OnInit{
       this.router.navigate(["/subCategory"]);
     }
   }
-  sendit(data){
+  /* sendit(data){
     data = data.toLowerCase();
-    this.dataSource = this.categoryList.filter((cat:GroceryCategoryModel)=>{
-    const objData = (cat.CategoryName+cat.GroceryCategoryId+cat.ShopId+cat.Type).toLowerCase();
+    this.dataSource = this.orderList.filter((order:Order)=>{
+    const objData = (order.OrderID+order.UserID+order.HotelID+order.USER_PHONE+order.DeliveryDetails+order.Total_price+order.Status).toLowerCase();
     return objData.includes(data);
    });
+}*/
+
+// Second Approach of Filtering
+sendit(data){
+  data = data.trim(); // Remove whitespace
+  data = data.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = data;
 }
 
   addNew() {

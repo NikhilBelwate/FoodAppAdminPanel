@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
 import { Dairycategory } from 'src/app/data-interfaces';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-edit-dairy-subcategory',
@@ -16,6 +17,7 @@ export class EditDairySubcategoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:Dairycategory;
   public editFlag:boolean=false;
+  public isValidLogin;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -35,6 +37,7 @@ export class EditDairySubcategoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
+    this.isValidLogin = LoginComponent.validLogin;
     // set the value of dropdown
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
   }

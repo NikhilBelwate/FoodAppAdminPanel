@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
 import { FishMeatcategory } from 'src/app/data-interfaces';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-add-fishmeat-subcategory-inventory',
@@ -15,6 +16,7 @@ export class AddFishmeatSubcategoryInventoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:FishMeatcategory;
   public editFlag:boolean=false;
+  public isValidLogin;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
@@ -35,6 +37,7 @@ export class AddFishmeatSubcategoryInventoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
+    this.isValidLogin = LoginComponent.validLogin;
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
   }
 

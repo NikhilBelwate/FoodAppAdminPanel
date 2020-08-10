@@ -1,3 +1,7 @@
+<div *ngIf="!isValidLogin;else validLogin">
+  <app-login></app-login>
+</div>
+<ng-template #validLogin>
 <div class="container">
     <h3 mat-dialog-title>Sub Category id: {{subCategory.SubCategoryId}}</h3>
   
@@ -92,3 +96,4 @@
       </div>-->
     </form>
   </div>
+  </ng-template>

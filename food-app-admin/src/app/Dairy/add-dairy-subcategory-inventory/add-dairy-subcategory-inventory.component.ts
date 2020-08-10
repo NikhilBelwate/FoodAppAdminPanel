@@ -1,9 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { SubCategory } from 'src/model/SubCategory';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
 import { Dairycategory } from 'src/app/data-interfaces';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-add-dairy-subcategory-inventory',
@@ -15,6 +18,7 @@ export class AddDairySubcategoryInventoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:Dairycategory;
   public editFlag:boolean=false;
+  public isValidLogin;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
@@ -35,6 +39,7 @@ export class AddDairySubcategoryInventoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
+    this.isValidLogin = LoginComponent.validLogin;
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
   }
 

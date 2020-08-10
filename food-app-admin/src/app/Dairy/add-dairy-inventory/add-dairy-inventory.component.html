@@ -1,4 +1,9 @@
-<mat-drawer-container class="example-container">
+
+<div *ngIf="!isValidLogin;else validLogin">
+  <app-login></app-login>
+</div>
+<ng-template #validLogin>
+  <mat-drawer-container class="example-container">
     <h3 mat-dialog-title>Add New Dairy Category</h3>
   
     <form class="mat-dialog-content" [formGroup] = "userProfileForm" #formControl="ngForm" (ngSubmit) ="onSubmit()">
@@ -30,3 +35,4 @@
       </div>-->
     </form>
 </mat-drawer-container>
+</ng-template>

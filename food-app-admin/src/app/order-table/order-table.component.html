@@ -1,12 +1,17 @@
 <app-header></app-header>
 <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>Grocery
+<!-- <mat-drawer mode="side" opened style="color:white;background-color:olivedrab;">Grocery
     <p><button mat-button >Add/Update Grocery Category </button></p>
     <p><button mat-button >Add/Update Grocery Products</button></p>
-</mat-drawer>
+</mat-drawer>-->
 <mat-drawer-content>
 <div class="container mat-elevation-z8">
-<mat-table [dataSource]="orderList" matSort class="mat-elevation-z8">
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filter data" (keyup)="sendit($event.target.value)">
+    </mat-form-field>
+  </div>
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

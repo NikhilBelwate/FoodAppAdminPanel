@@ -1,6 +1,10 @@
+<div *ngIf="!isValidLogin;else validLogin">
+  <app-login></app-login>
+</div>
+<ng-template #validLogin>
 <app-header></app-header>
 <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>Dairy
+    <mat-drawer mode="side" opened style="color:white;background-color:olivedrab;">Dairy
         <p><button mat-button (click) = "showDetails('DairyCategory')">Add/Update Dairy Category </button></p>
         <p><button mat-button (click) = "showDetails('DairySubCategory')">Add/Update Dairy Products</button></p>
     </mat-drawer>
@@ -134,3 +138,4 @@
     </ng-template>
     </mat-drawer-content>
   </mat-drawer-container>
+</ng-template>

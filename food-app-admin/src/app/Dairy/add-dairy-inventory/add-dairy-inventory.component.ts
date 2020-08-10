@@ -3,6 +3,7 @@ import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataApiService } from '../../data-api.service';
 import { Router } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class AddDairyInventoryComponent implements OnInit {
   @Input() public category:DairyCategoryModel;
   public addFlag:boolean=false;
+  public isValidLogin;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) {
 
   }
@@ -42,6 +44,7 @@ export class AddDairyInventoryComponent implements OnInit {
  
   ngOnInit(): void {
     console.log(this.category);
+    this.isValidLogin = LoginComponent.validLogin;
   }
 
 

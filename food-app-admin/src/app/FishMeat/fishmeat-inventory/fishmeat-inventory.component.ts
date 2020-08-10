@@ -72,7 +72,20 @@ export class FishmeatInventoryComponent implements OnInit {
     this.editFlag = $event;
     this.getCategoryDetails();
   }
+  /* sendit(data){
+    data = data.toLowerCase();
+    this.dataSource = this.orderList.filter((order:Order)=>{
+    const objData = (order.OrderID+order.UserID+order.HotelID+order.USER_PHONE+order.DeliveryDetails+order.Total_price+order.Status).toLowerCase();
+    return objData.includes(data);
+   });
+}*/
 
+// Second Approach of Filtering
+sendit(data){
+  data = data.trim(); // Remove whitespace
+  data = data.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = data;
+}
   showDetails(inventoryName){
     this.editFlag=false;
     this.addFlag=false;

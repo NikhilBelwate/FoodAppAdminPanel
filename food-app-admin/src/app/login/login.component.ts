@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   roleList:Roles[];
+  public static validLogin = false;
   constructor(private router: Router, private _dataApiService:DataApiService) { }
 
   ngOnInit(): void {
@@ -26,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
   login() : void {
     if(this.username == 'admin' && this.password == 'admin'){
+      LoginComponent.validLogin = true;
      this.router.navigate(["ordertable"]);
     }else {
+      LoginComponent.validLogin = false;
       alert("Invalid credentials");
     }
   }

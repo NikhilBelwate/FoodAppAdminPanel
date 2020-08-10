@@ -1,3 +1,7 @@
+<div *ngIf="!isValidLogin;else validLogin">
+  <app-login></app-login>
+</div>
+<ng-template #validLogin>
 <mat-drawer-container class="example-container">
     <h3 mat-dialog-title>Issue id: {{category.DairyCategoryId}}</h3>
   
@@ -39,4 +43,5 @@
       </div>-->
     </form>
 </mat-drawer-container>
+</ng-template>
   

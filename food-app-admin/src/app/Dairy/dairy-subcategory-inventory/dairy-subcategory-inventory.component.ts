@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditDairySubcategoryComponent } from '../edit-dairy-subcategory/edit-dairy-subcategory.component';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginComponent } from 'src/app/login/login.component';
 
 
 
@@ -28,6 +29,7 @@ export class DairySubcategoryInventoryComponent implements OnInit {
   public editFlag=false;
   public addFlag=false;
   public dataSource;
+  public isValidLogin;
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
   constructor(private dataServiceApi:DataApiService,private router : Router,public dialog: MatDialog) { }
@@ -37,6 +39,7 @@ export class DairySubcategoryInventoryComponent implements OnInit {
     this.addFlag=false;
     this.getCategoryList();
     this.getSubCategoryDetails();
+    this.isValidLogin = LoginComponent.validLogin;
   }
   getCategoryList() {
     this.dataServiceApi.getDairyCategoryDetailsApi().subscribe(
@@ -86,12 +89,19 @@ export class DairySubcategoryInventoryComponent implements OnInit {
     this.editFlag = true;
     }
 
-sendit(data){
+/* sendit(data){
     data = data.toLowerCase();
-    this.dataSource = this.filterSubCategoryList.filter((subCat:SubCategory)=>{
-    const objData = (subCat.SubCategoryName+subCat.SubCategoryPrice+subCat.SubCategoryUrl+subCat.Unit+subCat.CategoryName+subCat.SubCategoryDesc+subCat.LocationId+subCat.SubCategoryPrice+subCat.SubCategoryId).toLowerCase();
+    this.dataSource = this.orderList.filter((order:Order)=>{
+    const objData = (order.OrderID+order.UserID+order.HotelID+order.USER_PHONE+order.DeliveryDetails+order.Total_price+order.Status).toLowerCase();
     return objData.includes(data);
    });
+}*/
+
+// Second Approach of Filtering
+sendit(data){
+  data = data.trim(); // Remove whitespace
+  data = data.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = data;
 }
 deleteItem(subCategory:SubCategory) {
   this.subCategory = new SubCategory();
