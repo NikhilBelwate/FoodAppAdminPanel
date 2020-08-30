@@ -30,6 +30,7 @@ export class OrderTableComponent implements OnInit {
       data => {
           this.ordersData=data;
           this.orderList=this.ordersData.orders;
+          console.log(this.orderList);
           this.dataSource=new MatTableDataSource(this.ordersData.orders);
           //For sorting of table data
           this.dataSource.sort= this.sort;

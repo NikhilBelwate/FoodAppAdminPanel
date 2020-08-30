@@ -41,12 +41,15 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(["/grocery"]);
     }
     else if(inventoryName=='Food'){
-      this.router.navigate(["/ordertable"]);
+      window.location.href = 'http://foodapp.dx.am/FoodApp/login.php';
     }else if(inventoryName=='Dairy'){
       this.router.navigate(["/dairy"]);
     }
     else if(inventoryName=='FishMeat'){
       this.router.navigate(["/fishmeat"]);
+    }
+    else if(inventoryName=='Bakery'){
+      this.router.navigate(["/bakery"]);
     }
   }
 

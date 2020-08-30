@@ -37,6 +37,13 @@ import { EditFishmeatInventoryComponent } from './FishMeat/edit-fishmeat-invento
 import { FishMeatRoutingModule } from './FishMeat/fishmeat-routing-module';
 import { HeaderComponent } from './header/header.component';
 import { OfferComponent } from './offer/offer.component';
+import { AddBakerySubcategoryInventoryComponent } from './Bakery/add-bakery-subcategory-inventory/add-bakery-subcategory-inventory.component';
+import { AddBakeryCategoryInventoryComponent } from './Bakery/add-bakery-category-inventory/add-bakery-category-inventory.component';
+import { EditBakerySubcategoryInventoryComponent } from './Bakery/edit-bakery-subcategory-inventory/edit-bakery-subcategory-inventory.component';
+import { EditBakeryCategoryInventoryComponent } from './Bakery/edit-bakery-category-inventory/edit-bakery-category-inventory.component';
+import { BakeryInventoryComponent } from './Bakery/bakery-inventory/bakery-inventory.component';
+import { BakerySubcategoryInventoryComponent } from './Bakery/bakery-subcategory-inventory/bakery-subcategory-inventory.component';
+import { BakeryRoutingModule } from './Bakery/bakery-routing.module';
 
 @NgModule({
   declarations: [
@@ -63,7 +70,13 @@ import { OfferComponent } from './offer/offer.component';
     EditFishmeatSubcategoryInventoryComponent,
     EditFishmeatInventoryComponent,
     HeaderComponent,
-    OfferComponent
+    OfferComponent,
+    AddBakerySubcategoryInventoryComponent,
+    AddBakeryCategoryInventoryComponent,
+    EditBakerySubcategoryInventoryComponent,
+    EditBakeryCategoryInventoryComponent,
+    BakeryInventoryComponent,
+    BakerySubcategoryInventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +90,8 @@ import { OfferComponent } from './offer/offer.component';
     GroceryRoutingModule,
     DairyRoutingModule,
     FishMeatRoutingModule,
-        BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BakeryRoutingModule
     ],
     exports: [
         MaterialModule

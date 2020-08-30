@@ -2,6 +2,7 @@ import { GroceryCategoryModel } from 'src/model/GroceryCategoryModel';
 import { DairyCategoryModel } from 'src/model/DairyCategoryModel';
 import { SubCategory } from 'src/model/SubCategory';
 import { FishMeatCategoryModel } from 'src/model/FishMeatCategoryModel';
+import { BakeryCategoryModel } from 'src/model/BakeryCategoryModel';
 
 export interface Record{
     OrderID:number;
@@ -80,6 +81,14 @@ export interface DeliveryDetails {
 
     export interface GrocerySubCategory {
         items: SubCategory[];
+    }
+
+    export interface BakerySubCategory {
+        items: SubCategory[];
+    }
+
+    export interface Bakerycategory {
+        categoryList: BakeryCategoryModel[];
     }
 
     export interface Dairycategory {
