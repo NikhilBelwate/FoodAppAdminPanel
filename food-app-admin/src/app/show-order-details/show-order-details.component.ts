@@ -26,8 +26,8 @@ export class ShowOrderDetailsComponent implements OnInit {
   statusRecord:Record[];
   options: FormGroup;
   colorControl = new FormControl('primary');
-  foodStatus = ["Order accepted","Order preparing","Order Out for delivery","Order delivered","Order Cancelled by the Hotel","Order Cancelled by the Admin"];
-  otherStatus = ["Order has been Placed","Order accepted","Order in process","Order Out for delivery","Order delivered","Order Cancelled"];
+  foodStatus = ["Order is accepted","Order preparing","Order is out for delivery","Order is delivered","Order is Cancelled by the Hotel","Order Cancelled by the Admin"];
+  otherStatus = ["Order has been Placed","Order is accepted","Order is in process","Order is out for delivery","Order is delivered","Order is cancelled"];
   url;
   private stopSubs:Subscription;
   @Input() public foodOrderData:Order;
@@ -66,7 +66,7 @@ export class ShowOrderDetailsComponent implements OnInit {
       this.orderUpdate.Time=new Date().getTime();
       this._dataApiService.setNewStatusOnServer(this.orderUpdate).subscribe(
         data=>{
-          alert(JSON.stringify(data));
+          //alert(JSON.stringify(data));
           this.sendNotification("Welcome User",'{"orderId":'+this.orderInfo.OrderID+',"orderStatus":"'+this.orderInfo.Status+'","statusMsg":"Now your '+this.orderInfo.Status+'","adminMsg":"'+this.adminMsg+'" }',this.orderInfo.Token);
       
         },
@@ -92,13 +92,13 @@ export class ShowOrderDetailsComponent implements OnInit {
       this._dataApiService.getOrderDetails(this.orderID).subscribe(
         data=>{
           this.orderInfo=data;
-          alert(JSON.stringify(this.orderInfo));
+          //alert(JSON.stringify(this.orderInfo));
           this.currentStatus = this.orderInfo.Status;
         },
         error=>{
           this.errormsg=error.message;
           console.log(error.message);
-          alert(error.message);
+          //alert(error.message);
         }
       );
     
@@ -115,7 +115,7 @@ export class ShowOrderDetailsComponent implements OnInit {
 }
 
 ngOnDestroy(){
-  this.stopSubs.unsubscribe();
+ // this.stopSubs.unsubscribe();
 }
 changeStatus(){
  // alert(this.orderInfo.OrderID+" "+ this.newStatus+ " "+new Date().getTime());

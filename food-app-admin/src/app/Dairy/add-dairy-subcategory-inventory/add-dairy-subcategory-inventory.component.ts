@@ -60,9 +60,14 @@ export class AddDairySubcategoryInventoryComponent implements OnInit {
       this.dataServiceApi.saveDairySubCategoryDetailsApi(this.subCategory).subscribe(
        data =>{
          console.log(data);
-         alert("Sub Category Records Updated Succesfully");
-         this.editFlag = false;
-         this.router.navigate(["/dairysubCategory"]);
+         alert("Sub Category Records Added Succesfully");
+         this.editSubcategoryProfileForm.reset();
+         this.editSubcategoryProfileForm.get('subCategoryName').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryPrice').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryUrl').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryDesc').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryTax').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryUnit').setErrors(null);
        },
        error => {
        }

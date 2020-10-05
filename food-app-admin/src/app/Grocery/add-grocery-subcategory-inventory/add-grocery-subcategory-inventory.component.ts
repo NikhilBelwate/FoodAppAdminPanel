@@ -15,6 +15,7 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:Grocerycategory;
   public editFlag:boolean=false;
+  public addFlag:boolean=false;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
@@ -55,9 +56,16 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
       this.dataServiceApi.saveGrocerySubCategoryDetailsApi(this.subCategory).subscribe(
        data =>{
          console.log(data);
-         alert("Sub Category Records Updated Succesfully");
+         alert("Sub Category Records Added Succesfully");
          this.editFlag = false;
-         this.router.navigate(["/subCategory"]);
+         this.addFlag = false;
+         this.editSubcategoryProfileForm.reset();
+         this.editSubcategoryProfileForm.get('subCategoryName').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryPrice').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryUrl').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryDesc').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryTax').setErrors(null);
+         this.editSubcategoryProfileForm.get('subCategoryUnit').setErrors(null);
        },
        error => {
        }

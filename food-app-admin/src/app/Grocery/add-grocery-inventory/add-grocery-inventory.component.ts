@@ -28,7 +28,7 @@ export class AddGroceryInventoryComponent implements OnInit {
        this.dataServiceApi.saveGroceryCategoryDetailsApi(this.category).subscribe(
         data =>{
           //console.log(data);
-          alert("Category Records Updated Succesfully");
+          alert("Category Records Added Succesfully");
           this.addFlag = false;
           this.messageEventAdd.emit(this.addFlag);
           this.router.navigate(["/grocery"]);

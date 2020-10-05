@@ -45,7 +45,6 @@ export class DairySubcategoryInventoryComponent implements OnInit {
     this.dataServiceApi.getDairyCategoryDetailsApi().subscribe(
       data=>{
         this.categoryService = data;
-        console.log(this.categoryService);
       }
     )
   }
@@ -55,7 +54,6 @@ export class DairySubcategoryInventoryComponent implements OnInit {
   getSubCategoryDetails() {
     this.dataServiceApi.getDairySubCategoryDetailsApi().subscribe(
       data =>{
-        console.log(data);
         this.subCategoryList=data.items;
         this.dataSource=new MatTableDataSource(data.items);
         this.dataSource.paginator = this.paginator;
@@ -69,7 +67,7 @@ export class DairySubcategoryInventoryComponent implements OnInit {
         const matTable =  new MatTableDataSource(this.subCategoryList);
         
         //this.dataServiceApi.dataChange.value.push(this.categoryArray);
-        console.log(this.dataServiceApi.dataChange.value.length);
+        //console.log(this.dataServiceApi.dataChange.value.length);
       },
       error => {
         //this.errormsg=error.message;
@@ -106,7 +104,7 @@ sendit(data){
 deleteItem(subCategory:SubCategory) {
   this.subCategory = new SubCategory();
   this.subCategory = subCategory;
-  console.log(this.subCategory);
+ // console.log(this.subCategory);
   /*const dialogRef = this.dialog.open(DeleteGrocerySubcategoryInventoryComponent, {
     data: {subCategory:this.subCategory}
   });
@@ -129,7 +127,6 @@ showDetails(inventoryName){
     this.router.navigate(["/dairy"]);
   }
   else if(inventoryName=='DairySubCategory'){
-    alert(inventoryName);
     this.router.navigate(["/dairysubCategory"]);
   }
 

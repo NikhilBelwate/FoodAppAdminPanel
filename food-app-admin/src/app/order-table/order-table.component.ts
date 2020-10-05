@@ -26,6 +26,7 @@ export class OrderTableComponent implements OnInit {
   constructor(private _dataApiService:DataApiService, private router: Router) { }
 
   ngOnInit(): void {
+    alert("hello");
     this._dataApiService.getOrdersListData().subscribe(
       data => {
           this.ordersData=data;
@@ -45,9 +46,9 @@ export class OrderTableComponent implements OnInit {
    
   }
   showDetails(row){
-    alert(JSON.stringify(row));
+    //alert(JSON.stringify(row));
     this.foodOrderData = row;
-    console.log(this.foodOrderData);
+    //console.log(this.foodOrderData);
     this._dataApiService.getFoodOrderResult(this.foodOrderData);
     this.router.navigate(["/details",row.OrderID]);
   }

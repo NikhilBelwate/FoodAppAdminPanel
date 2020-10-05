@@ -47,7 +47,6 @@ export class GroceryInventoryComponent implements OnInit{
     this.addFlag=false;
     this.getCategoryDetails();
     this.isValidLogin = LoginComponent.validLogin;
-    alert(this.isValidLogin);
   }
 
   getCategoryDetails() {
@@ -83,7 +82,6 @@ export class GroceryInventoryComponent implements OnInit{
       this.router.navigate(["/grocery"]);
     }
     else if(inventoryName=='Food'){
-      alert(inventoryName);
       this.router.navigate(["/subCategory"]);
     }
   }
@@ -126,7 +124,6 @@ deleteItem(i: number, categoryId: number, categoryName: string, categoryUrl: str
     data: {category:this.category}
   });
   dialogRef.afterClosed().subscribe(result => {
-    alert("hello");
     this.dataSource.data = this.categoryService.categoryList.filter((x)=>x.GroceryCategoryId==this.category.GroceryCategoryId)
   });
 }

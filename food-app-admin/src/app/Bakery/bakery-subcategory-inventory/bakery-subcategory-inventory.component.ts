@@ -125,7 +125,6 @@ showDetails(inventoryName){
     this.router.navigate(["/bakery"]);
   }
   else if(inventoryName=='BakerySubCategory'){
-    alert(inventoryName);
     this.router.navigate(["/bakerysubCategory"]);
   }
 

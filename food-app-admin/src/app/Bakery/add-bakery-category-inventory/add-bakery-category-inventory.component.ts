@@ -30,7 +30,7 @@ export class AddBakeryCategoryInventoryComponent implements OnInit {
        this.dataServiceApi.saveBakeryCategoryDetailsApi(this.category).subscribe(
         data =>{
           //console.log(data);
-          alert("Category Records Updated Succesfully");
+          alert("Category Records Added Succesfully");
           this.addFlag = false;
           this.messageEventAdd.emit(this.addFlag);
           this.router.navigate(["/bakery"]);

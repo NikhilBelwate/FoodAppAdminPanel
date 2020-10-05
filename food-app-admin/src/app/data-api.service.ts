@@ -116,8 +116,8 @@ export class DataApiService {
 
 //HTTP POST
 public setNewStatusOnServer(orderDetails:OrderUpdate): Observable<any>{
-  console.log(JSON.stringify(orderDetails));
-  alert(JSON.stringify(orderDetails));
+  //console.log(JSON.stringify(orderDetails));
+  //alert(JSON.stringify(orderDetails));
   this.httpOptions.headers =this.httpOptions.headers.set('Access-Control-Allow-Origin', '*');
   //this.httpOptions.headers =this.httpOptions.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
   //this.httpOptions.headers =this.httpOptions.headers.set('Content-Type', 'application/json');
