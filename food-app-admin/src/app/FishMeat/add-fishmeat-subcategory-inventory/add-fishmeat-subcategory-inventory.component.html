@@ -80,7 +80,13 @@
          
         </mat-form-field>
       </div>
-
+      <div class="form">
+        <mat-select placeholder="Select New Status" [(value)]="subCategory.itemState">
+          <mat-option *ngFor="let item of itemStateData" [value]="item">
+            {{item}}
+            </mat-option>
+        </mat-select>
+      </div>
       <div mat-dialog-actions>
       <button type="submit" mat-button color="accent" [disabled]="!formControl.valid" >Add</button>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SubCategory } from 'src/model/SubCategory';
 import { EditDairySubcategoryComponent } from 'src/app/Dairy/edit-dairy-subcategory/edit-dairy-subcategory.component';
-import { Dairycategory } from 'src/app/data-interfaces';
+import { Bakerycategory, Dairycategory } from 'src/app/data-interfaces';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataApiService } from 'src/app/data-api.service';
@@ -20,7 +20,7 @@ export class BakerySubcategoryInventoryComponent implements OnInit {
   subCategoryList:SubCategory[];
   filterSubCategoryList:SubCategory[];
   public edit:EditDairySubcategoryComponent;
-  public categoryService:Dairycategory;
+  public categoryService:Bakerycategory;
   public subCategory:SubCategory;
   public editFlag=false;
   public addFlag=false;
@@ -38,7 +38,7 @@ export class BakerySubcategoryInventoryComponent implements OnInit {
     this.isValidLogin = LoginComponent.validLogin;
   }
   getCategoryList() {
-    this.dataServiceApi.getDairyCategoryDetailsApi().subscribe(
+    this.dataServiceApi.getBakeryCategoryDetailsApi().subscribe(
       data=>{
         this.categoryService = data;
         console.log(this.categoryService);
@@ -58,9 +58,9 @@ export class BakerySubcategoryInventoryComponent implements OnInit {
         this.filterSubCategoryList = this.subCategoryList;
         // Getting the name of the category from the category Id and mapping it in the Sub Category List
         this.subCategoryList.map(x=>{
-          x.CategoryName=this.categoryService.categoryList.find(y=>y.DairyCategoryId===x.CategoryId).CategoryName
+          x.CategoryName=this.categoryService.categoryList.find(y=>y.BakeryCategoryId===x.CategoryId).CategoryName
         });
-       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.DairyCategoryId===x.CategoryId))
+       this.subCategoryList.filter(x=>this.categoryService.categoryList.find(y=>y.BakeryCategoryId===x.CategoryId))
        
         const matTable =  new MatTableDataSource(this.subCategoryList);
         

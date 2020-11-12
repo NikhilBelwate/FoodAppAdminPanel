@@ -17,6 +17,7 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
   public editFlag:boolean=false;
   public addFlag:boolean=false;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
+  itemStateData: string[];
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -36,6 +37,7 @@ export class AddGrocerySubcategoryInventoryComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.subCategory);
     this.getCategoryList();
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
   }
 

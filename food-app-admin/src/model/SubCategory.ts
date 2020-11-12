@@ -10,6 +10,7 @@ export class SubCategory
     SubCategoryTax:number;
     Unit:string;
     CategoryName:string;
+    itemState:string;
 
     constructor(){}
 

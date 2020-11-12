@@ -18,6 +18,7 @@ export class EditDairySubcategoryComponent implements OnInit {
   public categoryService:Dairycategory;
   public editFlag:boolean=false;
   public isValidLogin;
+  itemStateData: string[];
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -38,6 +39,7 @@ export class EditDairySubcategoryComponent implements OnInit {
     console.log(this.subCategory);
     this.getCategoryList();
     this.isValidLogin = LoginComponent.validLogin;
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     // set the value of dropdown
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
   }

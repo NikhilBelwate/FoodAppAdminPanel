@@ -20,6 +20,7 @@ export class AddDairySubcategoryInventoryComponent implements OnInit {
   public editFlag:boolean=false;
   public isValidLogin;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
+  itemStateData: string[];
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -40,6 +41,7 @@ export class AddDairySubcategoryInventoryComponent implements OnInit {
     console.log(this.subCategory);
     this.getCategoryList();
     this.isValidLogin = LoginComponent.validLogin;
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
   }
 

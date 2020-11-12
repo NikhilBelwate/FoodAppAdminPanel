@@ -17,6 +17,7 @@ export class EditBakerySubcategoryInventoryComponent implements OnInit {
   public categoryService:Bakerycategory;
   public editFlag:boolean=false;
   public isValidLogin;
+  public itemStateData;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -38,6 +39,7 @@ export class EditBakerySubcategoryInventoryComponent implements OnInit {
     this.getCategoryList();
     this.isValidLogin = LoginComponent.validLogin;
     // set the value of dropdown
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
   }
 

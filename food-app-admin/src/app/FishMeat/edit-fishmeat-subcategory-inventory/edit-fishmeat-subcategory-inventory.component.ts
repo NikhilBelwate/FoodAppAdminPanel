@@ -18,6 +18,7 @@ export class EditFishmeatSubcategoryInventoryComponent implements OnInit {
   public categoryService:FishMeatcategory;
   public editFlag:boolean=false;
   public isValidLogin;
+  itemStateData: string[];
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
   editSubcategoryProfileForm = this.fb.group({
@@ -38,6 +39,7 @@ export class EditFishmeatSubcategoryInventoryComponent implements OnInit {
     this.getCategoryList();
     // set the value of dropdown
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     this.isValidLogin = LoginComponent.validLogin;
   }
 

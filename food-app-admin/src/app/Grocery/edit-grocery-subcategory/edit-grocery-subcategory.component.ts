@@ -15,6 +15,7 @@ export class EditGrocerySubcategoryComponent implements OnInit {
   @Input() public subCategory:SubCategory;
   public categoryService:Grocerycategory;
   public editFlag:boolean=false;
+  public itemStateData;
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
 
 
@@ -35,6 +36,7 @@ export class EditGrocerySubcategoryComponent implements OnInit {
     console.log(this.subCategory);
     this.getCategoryList();
     // set the value of dropdown
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
     this.editSubcategoryProfileForm.get('CategoryName').setValue(this.subCategory.CategoryName);
   }
 

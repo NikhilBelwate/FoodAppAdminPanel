@@ -19,7 +19,7 @@ export class AddBakerySubcategoryInventoryComponent implements OnInit {
   public isValidLogin;
   @Output() messageEventAdd = new EventEmitter<Boolean>();
   constructor(private fb:FormBuilder,private dataServiceApi:DataApiService,private router : Router) { }
-
+  itemStateData;
 
   editSubcategoryProfileForm = this.fb.group({
     subCategoryId:[''],
@@ -39,6 +39,8 @@ export class AddBakerySubcategoryInventoryComponent implements OnInit {
     this.getCategoryList();
     this.isValidLogin = LoginComponent.validLogin;
     this.editSubcategoryProfileForm.get('categoryName').setValue(this.subCategory.CategoryName);
+    this.itemStateData = this.dataServiceApi.getItemStateDetails();
+    console.log(this.itemStateData);
   }
 
   getCategoryList() {

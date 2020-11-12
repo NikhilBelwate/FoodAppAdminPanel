@@ -31,84 +31,85 @@ export class DataApiService {
   dataChange: BehaviorSubject<Grocerycategory[]> = new BehaviorSubject<Grocerycategory[]>([]);
   private getFoodOrderSource = new BehaviorSubject<Order>(null);
   foodOrder$ = this.getFoodOrderSource.asObservable();
+   domainUrl:string =  "zazafood.com";
 
   getFoodOrderResult(order:Order){
     this.getFoodOrderSource.next(order);
   }
-  getOrdersListUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getAllOrders.php";
+  getOrdersListUrl:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/getAllOrders.php";
   //getOrdersListUrl:string="http://www.json-generator.com/api/json/get/bQZMmVNZVe?indent=2"
 
-  getOrderDetailsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
+  getOrderDetailsUrl:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/getOrderDetails.php?orderID="; //append orderID in URL
   //getOrderDetailsUrl:string="http://www.mocky.io/v2/5e871293310000588b818581?orderID="; //append orderID in URL
   
   //getStatusRecordsUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/getStatusHistory.php?orderID="; //append orderID in URL
   getStatusRecordsUrl:string="http://www.mocky.io/v2/5e871a4231000011d88185de?orderID=";
 
 
-  submitStatusChangeUrl:string="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php"
+  submitStatusChangeUrl:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/changeStatus.php"
   //submitStatusChangeUrl:string="http://www.mocky.io/v2/5e88c96d3100006000d39ab8";
 
   //getGroceryCategoryDetails:string="http://localhost:8080/authenticate";
 
-  getGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/GroceryCategory.php";
+  getGroceryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/GroceryCategory.php";
 
-  getSubGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/grocerySubCategory.php";
+  getSubGroceryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/grocerySubCategory.php";
 
-  getDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/dairyCategory.php";
+  getDairyCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/dairyCategory.php";
 
-  getBakeryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/bakeryCategory.php";
+  getBakeryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/bakeryCategory.php";
 
-  getBakerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/bakerySubCategory.php";
+  getBakerySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/bakerySubCategory.php";
 
-  getFishMeatCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/fishMeatCategory.php";
+  getFishMeatCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/fishMeatCategory.php";
 
-  getSubDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/dairySubCategory.php";
+  getSubDairyCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/dairySubCategory.php";
 
-  getSubFishMeatCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/fishMeatSubCategory.php";
+  getSubFishMeatCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/fishMeatSubCategory.php";
 
-  saveGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocery.php";
+  saveGroceryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertGrocery.php";
 
-  saveBakeryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertBakery.php";
+  saveBakeryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertBakery.php";
 
-  saveDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertDairy.php";
+  saveDairyCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertDairy.php";
 
-  saveFishMeatCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertFishMeat.php";
+  saveFishMeatCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertFishMeat.php";
 
-  updateGroceryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateGrocery.php";
+  updateGroceryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateGrocery.php";
 
-  updateDairyCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateDairy.php";
+  updateDairyCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateDairy.php";
 
-  updateBakeryCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateBakery.php";
+  updateBakeryCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateBakery.php";
 
-  updateFishMeatCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateFishMeat.php";
+  updateFishMeatCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateFishMeat.php";
 
-  updateGrocerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateGrocerySubcategory.php";
+  updateGrocerySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateGrocerySubcategory.php";
 
-  updateBakerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateBakerySubCategory.php";
+  updateBakerySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateBakerySubCategory.php";
 
-  updateDairySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateDairySubCategory.php";
+  updateDairySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateDairySubCategory.php";
 
-  updateFishMeatSubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/updateFishMeatSubCategory.php";
+  updateFishMeatSubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/updateFishMeatSubCategory.php";
 
   //saveGrocerySubCategoryDetails:string="http://localhost:8080/saveSubCategoryDetails";
 
-  saveGrocerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertGrocerySubcategory.php";
-  saveBakerySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertBakerySubCategory.php";
+  saveGrocerySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertGrocerySubcategory.php";
+  saveBakerySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertBakerySubCategory.php";
 
-  saveDairySubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertDairySubCategory.php";
+  saveDairySubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertDairySubCategory.php";
 
-  saveFishMeatSubCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/insertFishMeatSubCategory.php";
+  saveFishMeatSubCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/insertFishMeatSubCategory.php";
   //deleteCategoryDetails:string="http://localhost:8080/deleteCategoryDetails";
 
-  deleteCategoryDetails:string="http://foodapp.dx.am/FoodApp/foodAppAPI/deleteGroceryCategory.php";
+  deleteCategoryDetails:string="http://" + this.domainUrl+"/FoodApp/foodAppAPI/deleteGroceryCategory.php";
 
   //deleteSubCategoryDetails:string = "http://localhost:8080/deleteSubCategoryDetails";
 
-  deleteSubCategoryDetails:string = "http://foodapp.dx.am/FoodApp/foodAppAPI/deleteGrocerySubCategory.php";
+  deleteSubCategoryDetails:string = "http://" + this.domainUrl+"/FoodApp/foodAppAPI/deleteGrocerySubCategory.php";
 
   getMasterRoles:string = "http://localhost:8080/getMasterRoles";
 
-  updateAdminStatusUrl ="http://foodapp.dx.am/FoodApp/foodAppAPI/changeStatus.php";
+  updateAdminStatusUrl ="http://" + this.domainUrl+"/FoodApp/foodAppAPI/changeStatus.php";
 
   constructor(private _http:HttpClient) {
     this.httpOptions.headers =this.httpOptions.headers.set('Authorization', 'my-new-auth-token');
@@ -365,6 +366,8 @@ public updatebakeryMeatSubCategoryDetailsApi(subCategory:SubCategory){
     return throwError(error);
   }
 
-  
+  public getItemStateDetails(){
+    return ["enable","disable","stock_out"];
+  }
 
 }
